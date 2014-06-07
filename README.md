@@ -1,7 +1,9 @@
 
 ___________________________________________________________________________________________________________
 
-                    TOOLCHAIN arm-cortex_a15-linux-gnueabihf-linaro_4.9.1-2014.05
+                    TOOLCHAIN arm-cortex_a7-linux-gnueabihf-linaro_4.9.1-2014.05
+
+___________________________________________________________________________________________________________
 
 - Built using latest Linaro Crosstool-NG toolchain builder (linaro-1.13.1)
 - Cortex-A7 specific settings for target architecture and target optimizations:
