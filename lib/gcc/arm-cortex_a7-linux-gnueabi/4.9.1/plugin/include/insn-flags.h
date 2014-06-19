@@ -78,6 +78,12 @@
 #define HAVE_load_tp_hard (TARGET_HARD_TP)
 #define HAVE_load_tp_soft (TARGET_SOFT_TP)
 #define HAVE_tlscall (TARGET_GNU2_TLS)
+#define HAVE_arm_rev16si2 (arm_arch6 \
+   && aarch_rev16_shleft_mask_imm_p (operands[3], SImode) \
+   && aarch_rev16_shright_mask_imm_p (operands[2], SImode))
+#define HAVE_arm_rev16si2_alt (arm_arch6 \
+   && aarch_rev16_shleft_mask_imm_p (operands[3], SImode) \
+   && aarch_rev16_shright_mask_imm_p (operands[2], SImode))
 #define HAVE_crc32b (TARGET_CRC32)
 #define HAVE_crc32h (TARGET_CRC32)
 #define HAVE_crc32w (TARGET_CRC32)
@@ -2525,6 +2531,8 @@ extern rtx        gen_thumb_eh_return                   (rtx);
 extern rtx        gen_load_tp_hard                      (rtx);
 extern rtx        gen_load_tp_soft                      (void);
 extern rtx        gen_tlscall                           (rtx, rtx);
+extern rtx        gen_arm_rev16si2                      (rtx, rtx, rtx, rtx);
+extern rtx        gen_arm_rev16si2_alt                  (rtx, rtx, rtx, rtx);
 extern rtx        gen_crc32b                            (rtx, rtx, rtx);
 extern rtx        gen_crc32h                            (rtx, rtx, rtx);
 extern rtx        gen_crc32w                            (rtx, rtx, rtx);
