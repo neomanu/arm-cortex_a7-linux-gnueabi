@@ -258,9 +258,11 @@ enum unspecv {
   VUNSPEC_LAX = 22,
   VUNSPEC_SLX = 23,
   VUNSPEC_LDA = 24,
-  VUNSPEC_STL = 25
+  VUNSPEC_STL = 25,
+  VUNSPEC_GET_FPSCR = 26,
+  VUNSPEC_SET_FPSCR = 27
 };
-#define NUM_UNSPECV_VALUES 26
+#define NUM_UNSPECV_VALUES 28
 extern const char *const unspecv_strings[];
 
 #endif /* GCC_INSN_CONSTANTS_H */

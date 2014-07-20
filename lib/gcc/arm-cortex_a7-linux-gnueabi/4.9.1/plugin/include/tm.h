@@ -1,6 +1,6 @@
 #ifndef GCC_TM_H
 #define GCC_TM_H
-#define TARGET_CPU_DEFAULT (TARGET_CPU_generic)
+#define TARGET_CPU_DEFAULT (TARGET_CPU_cortexa7)
 #ifndef LIBC_GLIBC
 # define LIBC_GLIBC 1
 #endif
@@ -31,6 +31,7 @@
 # include "config/arm/bpabi.h"
 # include "config/arm/linux-eabi.h"
 # include "config/arm/aout.h"
+# include "config/vxworks-dummy.h"
 # include "config/arm/arm.h"
 # include "config/initfini-array.h"
 #endif

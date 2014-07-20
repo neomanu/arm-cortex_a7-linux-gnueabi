@@ -1,5 +1,5 @@
 /* Generated automatically by the program 'build/genpreds'
-   from the machine description file '/home/neuvine/Documents/tc/ctng/ct/.build/src/gcc-linaro-4.9-2014.06/gcc/config/arm/arm.md'.  */
+   from the machine description file '/home/neuvine/Documents/tc/ctng/ct/.build/src/gcc-linaro-4.9-2014.07/gcc/config/arm/arm.md'.  */
 
 #ifndef GCC_TM_PREDS_H
 #define GCC_TM_PREDS_H
@@ -67,6 +67,7 @@ extern int shiftable_operator_strict_it (rtx, enum machine_mode);
 extern int logical_binary_operator (rtx, enum machine_mode);
 extern int commutative_binary_operator (rtx, enum machine_mode);
 extern int shift_operator (rtx, enum machine_mode);
+extern int shift_nomul_operator (rtx, enum machine_mode);
 extern int sat_shift_operator (rtx, enum machine_mode);
 extern int mult_operator (rtx, enum machine_mode);
 extern int thumb_16bit_operator (rtx, enum machine_mode);

@@ -9,35 +9,35 @@ enum machine_mode
   VOIDmode,                /* machmode.def:172 */
   BLKmode,                 /* machmode.def:176 */
   CCmode,                  /* machmode.def:207 */
-  CC_NOOVmode,             /* config/arm/arm-modes.def:46 */
-  CC_Zmode,                /* config/arm/arm-modes.def:47 */
-  CC_CZmode,               /* config/arm/arm-modes.def:48 */
-  CC_NCVmode,              /* config/arm/arm-modes.def:49 */
-  CC_SWPmode,              /* config/arm/arm-modes.def:50 */
-  CCFPmode,                /* config/arm/arm-modes.def:51 */
-  CCFPEmode,               /* config/arm/arm-modes.def:52 */
-  CC_DNEmode,              /* config/arm/arm-modes.def:53 */
-  CC_DEQmode,              /* config/arm/arm-modes.def:54 */
-  CC_DLEmode,              /* config/arm/arm-modes.def:55 */
-  CC_DLTmode,              /* config/arm/arm-modes.def:56 */
-  CC_DGEmode,              /* config/arm/arm-modes.def:57 */
-  CC_DGTmode,              /* config/arm/arm-modes.def:58 */
-  CC_DLEUmode,             /* config/arm/arm-modes.def:59 */
-  CC_DLTUmode,             /* config/arm/arm-modes.def:60 */
-  CC_DGEUmode,             /* config/arm/arm-modes.def:61 */
-  CC_DGTUmode,             /* config/arm/arm-modes.def:62 */
-  CC_Cmode,                /* config/arm/arm-modes.def:63 */
-  CC_Nmode,                /* config/arm/arm-modes.def:64 */
+  CC_NOOVmode,             /* config/arm/arm-modes.def:43 */
+  CC_Zmode,                /* config/arm/arm-modes.def:44 */
+  CC_CZmode,               /* config/arm/arm-modes.def:45 */
+  CC_NCVmode,              /* config/arm/arm-modes.def:46 */
+  CC_SWPmode,              /* config/arm/arm-modes.def:47 */
+  CCFPmode,                /* config/arm/arm-modes.def:48 */
+  CCFPEmode,               /* config/arm/arm-modes.def:49 */
+  CC_DNEmode,              /* config/arm/arm-modes.def:50 */
+  CC_DEQmode,              /* config/arm/arm-modes.def:51 */
+  CC_DLEmode,              /* config/arm/arm-modes.def:52 */
+  CC_DLTmode,              /* config/arm/arm-modes.def:53 */
+  CC_DGEmode,              /* config/arm/arm-modes.def:54 */
+  CC_DGTmode,              /* config/arm/arm-modes.def:55 */
+  CC_DLEUmode,             /* config/arm/arm-modes.def:56 */
+  CC_DLTUmode,             /* config/arm/arm-modes.def:57 */
+  CC_DGEUmode,             /* config/arm/arm-modes.def:58 */
+  CC_DGTUmode,             /* config/arm/arm-modes.def:59 */
+  CC_Cmode,                /* config/arm/arm-modes.def:60 */
+  CC_Nmode,                /* config/arm/arm-modes.def:61 */
   BImode,                  /* machmode.def:179 */
   QImode,                  /* machmode.def:187 */
   HImode,                  /* machmode.def:188 */
   SImode,                  /* machmode.def:189 */
   DImode,                  /* machmode.def:190 */
   TImode,                  /* machmode.def:191 */
-  EImode,                  /* config/arm/arm-modes.def:81 */
-  OImode,                  /* config/arm/arm-modes.def:82 */
-  CImode,                  /* config/arm/arm-modes.def:83 */
-  XImode,                  /* config/arm/arm-modes.def:84 */
+  EImode,                  /* config/arm/arm-modes.def:78 */
+  OImode,                  /* config/arm/arm-modes.def:79 */
+  CImode,                  /* config/arm/arm-modes.def:80 */
+  XImode,                  /* config/arm/arm-modes.def:81 */
   QQmode,                  /* machmode.def:210 */
   HQmode,                  /* machmode.def:211 */
   SQmode,                  /* machmode.def:212 */
@@ -56,10 +56,9 @@ enum machine_mode
   USAmode,                 /* machmode.def:228 */
   UDAmode,                 /* machmode.def:229 */
   UTAmode,                 /* machmode.def:230 */
-  HFmode,                  /* config/arm/arm-modes.def:29 */
+  HFmode,                  /* config/arm/arm-modes.def:26 */
   SFmode,                  /* machmode.def:202 */
   DFmode,                  /* machmode.def:203 */
-  XFmode,                  /* config/arm/arm-modes.def:26 */
   SDmode,                  /* machmode.def:242 */
   DDmode,                  /* machmode.def:243 */
   TDmode,                  /* machmode.def:244 */
@@ -75,27 +74,26 @@ enum machine_mode
   HCmode,                  /* machmode.def:239 */
   SCmode,                  /* machmode.def:239 */
   DCmode,                  /* machmode.def:239 */
-  XCmode,                  /* machmode.def:239 */
-  V4QImode,                /* config/arm/arm-modes.def:67 */
-  V2HImode,                /* config/arm/arm-modes.def:67 */
-  V8QImode,                /* config/arm/arm-modes.def:68 */
-  V4HImode,                /* config/arm/arm-modes.def:68 */
-  V2SImode,                /* config/arm/arm-modes.def:68 */
-  V16QImode,               /* config/arm/arm-modes.def:69 */
-  V8HImode,                /* config/arm/arm-modes.def:69 */
-  V4SImode,                /* config/arm/arm-modes.def:69 */
-  V2DImode,                /* config/arm/arm-modes.def:69 */
-  V4QQmode,                /* config/arm/arm-modes.def:74 */
-  V2HQmode,                /* config/arm/arm-modes.def:74 */
-  V4UQQmode,               /* config/arm/arm-modes.def:75 */
-  V2UHQmode,               /* config/arm/arm-modes.def:75 */
-  V2HAmode,                /* config/arm/arm-modes.def:76 */
-  V2UHAmode,               /* config/arm/arm-modes.def:77 */
-  V4HFmode,                /* config/arm/arm-modes.def:70 */
-  V2SFmode,                /* config/arm/arm-modes.def:70 */
-  V8HFmode,                /* config/arm/arm-modes.def:71 */
-  V4SFmode,                /* config/arm/arm-modes.def:71 */
-  V2DFmode,                /* config/arm/arm-modes.def:71 */
+  V4QImode,                /* config/arm/arm-modes.def:64 */
+  V2HImode,                /* config/arm/arm-modes.def:64 */
+  V8QImode,                /* config/arm/arm-modes.def:65 */
+  V4HImode,                /* config/arm/arm-modes.def:65 */
+  V2SImode,                /* config/arm/arm-modes.def:65 */
+  V16QImode,               /* config/arm/arm-modes.def:66 */
+  V8HImode,                /* config/arm/arm-modes.def:66 */
+  V4SImode,                /* config/arm/arm-modes.def:66 */
+  V2DImode,                /* config/arm/arm-modes.def:66 */
+  V4QQmode,                /* config/arm/arm-modes.def:71 */
+  V2HQmode,                /* config/arm/arm-modes.def:71 */
+  V4UQQmode,               /* config/arm/arm-modes.def:72 */
+  V2UHQmode,               /* config/arm/arm-modes.def:72 */
+  V2HAmode,                /* config/arm/arm-modes.def:73 */
+  V2UHAmode,               /* config/arm/arm-modes.def:74 */
+  V4HFmode,                /* config/arm/arm-modes.def:67 */
+  V2SFmode,                /* config/arm/arm-modes.def:67 */
+  V8HFmode,                /* config/arm/arm-modes.def:68 */
+  V4SFmode,                /* config/arm/arm-modes.def:68 */
+  V2DFmode,                /* config/arm/arm-modes.def:68 */
   MAX_MACHINE_MODE,
 
   MIN_MODE_RANDOM = VOIDmode,
@@ -123,7 +121,7 @@ enum machine_mode
   MAX_MODE_UACCUM = UTAmode,
 
   MIN_MODE_FLOAT = HFmode,
-  MAX_MODE_FLOAT = XFmode,
+  MAX_MODE_FLOAT = DFmode,
 
   MIN_MODE_DECIMAL_FLOAT = SDmode,
   MAX_MODE_DECIMAL_FLOAT = TDmode,
@@ -132,7 +130,7 @@ enum machine_mode
   MAX_MODE_COMPLEX_INT = CXImode,
 
   MIN_MODE_COMPLEX_FLOAT = HCmode,
-  MAX_MODE_COMPLEX_FLOAT = XCmode,
+  MAX_MODE_COMPLEX_FLOAT = DCmode,
 
   MIN_MODE_VECTOR_INT = V4QImode,
   MAX_MODE_VECTOR_INT = V2DImode,

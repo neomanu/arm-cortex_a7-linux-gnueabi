@@ -22,7 +22,7 @@ END-INFO-DIR-ENTRY
 
    This is the Tenth Edition, of 'Debugging with GDB: the GNU
 Source-Level Debugger' for GDB (crosstool-NG linaro-1.13.1 - Linaro GCC
-2014.06 - Cortex-A7) Version 7.7.1-2014.06-1.
+2014.07 - Cortex-A7) Version 7.7.1-2014.06-1.
 
    Copyright (C) 1988-2014 Free Software Foundation, Inc.
 
@@ -46,7 +46,7 @@ Debugging with GDB
 This file describes GDB, the GNU symbolic debugger.
 
    This is the Tenth Edition, for GDB (crosstool-NG linaro-1.13.1 -
-Linaro GCC 2014.06 - Cortex-A7) Version 7.7.1-2014.06-1.
+Linaro GCC 2014.07 - Cortex-A7) Version 7.7.1-2014.06-1.
 
    Copyright (C) 1988-2014 Free Software Foundation, Inc.
 

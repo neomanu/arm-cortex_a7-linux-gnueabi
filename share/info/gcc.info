@@ -56,7 +56,7 @@ Introduction
 
 This manual documents how to use the GNU compilers, as well as their
 features and incompatibilities, and how to report bugs.  It corresponds
-to the compilers (crosstool-NG linaro-1.13.1 - Linaro GCC 2014.06 -
+to the compilers (crosstool-NG linaro-1.13.1 - Linaro GCC 2014.07 -
 Cortex-A7) version 4.9.1.  The internals of the GNU compilers, including
 how to port them to new targets and some information about how to write
 front ends for new languages, are documented in a separate manual.
@@ -32009,6 +32009,8 @@ instructions, but allow the compiler to schedule those calls.
 
 * Menu:
 
+* AArch64 Built-in Functions::
+* AArch64 intrinsics::
 * Alpha Built-in Functions::
 * Altera Nios II Built-in Functions::
 * ARC Built-in Functions::
@@ -32016,6 +32018,7 @@ instructions, but allow the compiler to schedule those calls.
 * ARM iWMMXt Built-in Functions::
 * ARM NEON Intrinsics::
 * ARM ACLE Intrinsics::
+* ARM Floating Point Status and Control Intrinsics::
 * AVR Built-in Functions::
 * Blackfin Built-in Functions::
 * FR-V Built-in Functions::
@@ -32041,9 +32044,59 @@ instructions, but allow the compiler to schedule those calls.
 * TILEPro Built-in Functions::
 
 
-File: gcc.info,  Node: Alpha Built-in Functions,  Next: Altera Nios II Built-in Functions,  Up: Target Builtins
+File: gcc.info,  Node: AArch64 Built-in Functions,  Next: AArch64 intrinsics,  Up: Target Builtins
 
-6.57.1 Alpha Built-in Functions
+6.57.1 AArch64 Built-in Functions
+---------------------------------
+
+These built-in functions are available for the AArch64 family of
+processors.
+     unsigned int __builtin_aarch64_get_fpcr ()
+     void __builtin_aarch64_set_fpcr (unsigned int)
+     unsigned int __builtin_aarch64_get_fpsr ()
+     void __builtin_aarch64_set_fpsr (unsigned int)
+
+
+File: gcc.info,  Node: AArch64 intrinsics,  Next: Alpha Built-in Functions,  Prev: AArch64 Built-in Functions,  Up: Target Builtins
+
+6.57.2 ACLE Intrinsics for AArch64
+----------------------------------
+
+6.57.2.1 CRC32 intrinsics
+.........................
+
+These intrinsics are available when the CRC32 architecture extension is
+specified, e.g.  when the '-march=armv8-a+crc' switch is used, or when
+the target processor specified with '-mcpu' supports it.
+
+   * uint32_t __crc32b (uint32_t, uint8_t)
+     _Form of expected instruction(s):_ 'crc32b W0, W1, W2'
+
+   * uint32_t __crc32h (uint32_t, uint16_t)
+     _Form of expected instruction(s):_ 'crc32h W0, W1, W2'
+
+   * uint32_t __crc32w (uint32_t, uint32_t)
+     _Form of expected instruction(s):_ 'crc32w W0, W1, W2'
+
+   * uint32_t __crc32d (uint32_t, uint64_t)
+     _Form of expected instruction(s):_ 'crc32x W0, W1, X2'
+
+   * uint32_t __crc32cb (uint32_t, uint8_t)
+     _Form of expected instruction(s):_ 'crc32cb W0, W1, W2'
+
+   * uint32_t __crc32ch (uint32_t, uint16_t)
+     _Form of expected instruction(s):_ 'crc32ch W0, W1, W2'
+
+   * uint32_t __crc32cw (uint32_t, uint32_t)
+     _Form of expected instruction(s):_ 'crc32cw W0, W1, W2'
+
+   * uint32_t __crc32cd (uint32_t, uint64_t)
+     _Form of expected instruction(s):_ 'crc32cx W0, W1, X2'
+
+
+File: gcc.info,  Node: Alpha Built-in Functions,  Next: Altera Nios II Built-in Functions,  Prev: AArch64 intrinsics,  Up: Target Builtins
+
+6.57.3 Alpha Built-in Functions
 -------------------------------
 
 These built-in functions are available for the Alpha family of
@@ -32118,7 +32171,7 @@ calls, but when invoked with '-mtls-kernel', they invoke 'rdval' and
 
 File: gcc.info,  Node: Altera Nios II Built-in Functions,  Next: ARC Built-in Functions,  Prev: Alpha Built-in Functions,  Up: Target Builtins
 
-6.57.2 Altera Nios II Built-in Functions
+6.57.4 Altera Nios II Built-in Functions
 ----------------------------------------
 
 These built-in functions are available for the Altera Nios II family of
@@ -32217,7 +32270,7 @@ two parameters to the function.
 
 File: gcc.info,  Node: ARC Built-in Functions,  Next: ARC SIMD Built-in Functions,  Prev: Altera Nios II Built-in Functions,  Up: Target Builtins
 
-6.57.3 ARC Built-in Functions
+6.57.5 ARC Built-in Functions
 -----------------------------
 
 The following built-in functions are provided for ARC targets.  The
@@ -32358,7 +32411,7 @@ in the C code:
 
 File: gcc.info,  Node: ARC SIMD Built-in Functions,  Next: ARM iWMMXt Built-in Functions,  Prev: ARC Built-in Functions,  Up: Target Builtins
 
-6.57.4 ARC SIMD Built-in Functions
+6.57.6 ARC SIMD Built-in Functions
 ----------------------------------
 
 SIMD builtins provided by the compiler can be used to generate the
@@ -32550,7 +32603,7 @@ constant.
 
 File: gcc.info,  Node: ARM iWMMXt Built-in Functions,  Next: ARM NEON Intrinsics,  Prev: ARC SIMD Built-in Functions,  Up: Target Builtins
 
-6.57.5 ARM iWMMXt Built-in Functions
+6.57.7 ARM iWMMXt Built-in Functions
 ------------------------------------
 
 These built-in functions are available for the ARM family of processors
@@ -32704,13 +32757,13 @@ when the '-mcpu=iwmmxt' switch is used:
 
 File: gcc.info,  Node: ARM NEON Intrinsics,  Next: ARM ACLE Intrinsics,  Prev: ARM iWMMXt Built-in Functions,  Up: Target Builtins
 
-6.57.6 ARM NEON Intrinsics
+6.57.8 ARM NEON Intrinsics
 --------------------------
 
 These built-in intrinsics for the ARM Advanced SIMD extension are
 available when the '-mfpu=neon' switch is used:
 
-6.57.6.1 Addition
+6.57.8.1 Addition
 .................
 
    * uint32x2_t vadd_u32 (uint32x2_t, uint32x2_t)
@@ -32957,7 +33010,7 @@ available when the '-mfpu=neon' switch is used:
    * int8x8_t vraddhn_s16 (int16x8_t, int16x8_t)
      _Form of expected instruction(s):_ 'vraddhn.i16 D0, Q0, Q0'
 
-6.57.6.2 Multiplication
+6.57.8.2 Multiplication
 .......................
 
    * uint32x2_t vmul_u32 (uint32x2_t, uint32x2_t)
@@ -33059,7 +33112,7 @@ available when the '-mfpu=neon' switch is used:
    * int32x4_t vqdmull_s16 (int16x4_t, int16x4_t)
      _Form of expected instruction(s):_ 'vqdmull.s16 Q0, D0, D0'
 
-6.57.6.3 Multiply-accumulate
+6.57.8.3 Multiply-accumulate
 ............................
 
    * uint32x2_t vmla_u32 (uint32x2_t, uint32x2_t, uint32x2_t)
@@ -33128,7 +33181,7 @@ available when the '-mfpu=neon' switch is used:
    * int32x4_t vqdmlal_s16 (int32x4_t, int16x4_t, int16x4_t)
      _Form of expected instruction(s):_ 'vqdmlal.s16 Q0, D0, D0'
 
-6.57.6.4 Multiply-subtract
+6.57.8.4 Multiply-subtract
 ..........................
 
    * uint32x2_t vmls_u32 (uint32x2_t, uint32x2_t, uint32x2_t)
@@ -33197,7 +33250,7 @@ available when the '-mfpu=neon' switch is used:
    * int32x4_t vqdmlsl_s16 (int32x4_t, int16x4_t, int16x4_t)
      _Form of expected instruction(s):_ 'vqdmlsl.s16 Q0, D0, D0'
 
-6.57.6.5 Fused-multiply-accumulate
+6.57.8.5 Fused-multiply-accumulate
 ..................................
 
    * float32x2_t vfma_f32 (float32x2_t, float32x2_t, float32x2_t)
@@ -33206,7 +33259,7 @@ available when the '-mfpu=neon' switch is used:
    * float32x4_t vfmaq_f32 (float32x4_t, float32x4_t, float32x4_t)
      _Form of expected instruction(s):_ 'vfma.f32 Q0, Q0, Q0'
 
-6.57.6.6 Fused-multiply-subtract
+6.57.8.6 Fused-multiply-subtract
 ................................
 
    * float32x2_t vfms_f32 (float32x2_t, float32x2_t, float32x2_t)
@@ -33215,7 +33268,7 @@ available when the '-mfpu=neon' switch is used:
    * float32x4_t vfmsq_f32 (float32x4_t, float32x4_t, float32x4_t)
      _Form of expected instruction(s):_ 'vfms.f32 Q0, Q0, Q0'
 
-6.57.6.7 Round to integral (to nearest, ties to even)
+6.57.8.7 Round to integral (to nearest, ties to even)
 .....................................................
 
    * float32x2_t vrndn_f32 (float32x2_t)
@@ -33224,7 +33277,7 @@ available when the '-mfpu=neon' switch is used:
    * float32x4_t vrndqn_f32 (float32x4_t)
      _Form of expected instruction(s):_ 'vrintn.f32 Q0, Q0'
 
-6.57.6.8 Round to integral (to nearest, ties away from zero)
+6.57.8.8 Round to integral (to nearest, ties away from zero)
 ............................................................
 
    * float32x2_t vrnda_f32 (float32x2_t)
@@ -33233,7 +33286,7 @@ available when the '-mfpu=neon' switch is used:
    * float32x4_t vrndqa_f32 (float32x4_t)
      _Form of expected instruction(s):_ 'vrinta.f32 Q0, Q0'
 
-6.57.6.9 Round to integral (towards +Inf)
+6.57.8.9 Round to integral (towards +Inf)
 .........................................
 
    * float32x2_t vrndp_f32 (float32x2_t)
@@ -33242,7 +33295,7 @@ available when the '-mfpu=neon' switch is used:
    * float32x4_t vrndqp_f32 (float32x4_t)
      _Form of expected instruction(s):_ 'vrintp.f32 Q0, Q0'
 
-6.57.6.10 Round to integral (towards -Inf)
+6.57.8.10 Round to integral (towards -Inf)
 ..........................................
 
    * float32x2_t vrndm_f32 (float32x2_t)
@@ -33251,7 +33304,7 @@ available when the '-mfpu=neon' switch is used:
    * float32x4_t vrndqm_f32 (float32x4_t)
      _Form of expected instruction(s):_ 'vrintm.f32 Q0, Q0'
 
-6.57.6.11 Round to integral (towards 0)
+6.57.8.11 Round to integral (towards 0)
 .......................................
 
    * float32x2_t vrnd_f32 (float32x2_t)
@@ -33260,7 +33313,7 @@ available when the '-mfpu=neon' switch is used:
    * float32x4_t vrndq_f32 (float32x4_t)
      _Form of expected instruction(s):_ 'vrintz.f32 Q0, Q0'
 
-6.57.6.12 Subtraction
+6.57.8.12 Subtraction
 .....................
 
    * uint32x2_t vsub_u32 (uint32x2_t, uint32x2_t)
@@ -33471,7 +33524,7 @@ available when the '-mfpu=neon' switch is used:
    * int8x8_t vrsubhn_s16 (int16x8_t, int16x8_t)
      _Form of expected instruction(s):_ 'vrsubhn.i16 D0, Q0, Q0'
 
-6.57.6.13 Comparison (equal-to)
+6.57.8.13 Comparison (equal-to)
 ...............................
 
    * uint32x2_t vceq_u32 (uint32x2_t, uint32x2_t)
@@ -33522,7 +33575,7 @@ available when the '-mfpu=neon' switch is used:
    * uint8x16_t vceqq_p8 (poly8x16_t, poly8x16_t)
      _Form of expected instruction(s):_ 'vceq.i8 Q0, Q0, Q0'
 
-6.57.6.14 Comparison (greater-than-or-equal-to)
+6.57.8.14 Comparison (greater-than-or-equal-to)
 ...............................................
 
    * uint32x2_t vcge_s32 (int32x2_t, int32x2_t)
@@ -33567,7 +33620,7 @@ available when the '-mfpu=neon' switch is used:
    * uint8x16_t vcgeq_u8 (uint8x16_t, uint8x16_t)
      _Form of expected instruction(s):_ 'vcge.u8 Q0, Q0, Q0'
 
-6.57.6.15 Comparison (less-than-or-equal-to)
+6.57.8.15 Comparison (less-than-or-equal-to)
 ............................................
 
    * uint32x2_t vcle_s32 (int32x2_t, int32x2_t)
@@ -33612,7 +33665,7 @@ available when the '-mfpu=neon' switch is used:
    * uint8x16_t vcleq_u8 (uint8x16_t, uint8x16_t)
      _Form of expected instruction(s):_ 'vcge.u8 Q0, Q0, Q0'
 
-6.57.6.16 Comparison (greater-than)
+6.57.8.16 Comparison (greater-than)
 ...................................
 
    * uint32x2_t vcgt_s32 (int32x2_t, int32x2_t)
@@ -33657,7 +33710,7 @@ available when the '-mfpu=neon' switch is used:
    * uint8x16_t vcgtq_u8 (uint8x16_t, uint8x16_t)
      _Form of expected instruction(s):_ 'vcgt.u8 Q0, Q0, Q0'
 
-6.57.6.17 Comparison (less-than)
+6.57.8.17 Comparison (less-than)
 ................................
 
    * uint32x2_t vclt_s32 (int32x2_t, int32x2_t)
@@ -33702,7 +33755,7 @@ available when the '-mfpu=neon' switch is used:
    * uint8x16_t vcltq_u8 (uint8x16_t, uint8x16_t)
      _Form of expected instruction(s):_ 'vcgt.u8 Q0, Q0, Q0'
 
-6.57.6.18 Comparison (absolute greater-than-or-equal-to)
+6.57.8.18 Comparison (absolute greater-than-or-equal-to)
 ........................................................
 
    * uint32x2_t vcage_f32 (float32x2_t, float32x2_t)
@@ -33711,7 +33764,7 @@ available when the '-mfpu=neon' switch is used:
    * uint32x4_t vcageq_f32 (float32x4_t, float32x4_t)
      _Form of expected instruction(s):_ 'vacge.f32 Q0, Q0, Q0'
 
-6.57.6.19 Comparison (absolute less-than-or-equal-to)
+6.57.8.19 Comparison (absolute less-than-or-equal-to)
 .....................................................
 
    * uint32x2_t vcale_f32 (float32x2_t, float32x2_t)
@@ -33720,7 +33773,7 @@ available when the '-mfpu=neon' switch is used:
    * uint32x4_t vcaleq_f32 (float32x4_t, float32x4_t)
      _Form of expected instruction(s):_ 'vacge.f32 Q0, Q0, Q0'
 
-6.57.6.20 Comparison (absolute greater-than)
+6.57.8.20 Comparison (absolute greater-than)
 ............................................
 
    * uint32x2_t vcagt_f32 (float32x2_t, float32x2_t)
@@ -33729,7 +33782,7 @@ available when the '-mfpu=neon' switch is used:
    * uint32x4_t vcagtq_f32 (float32x4_t, float32x4_t)
      _Form of expected instruction(s):_ 'vacgt.f32 Q0, Q0, Q0'
 
-6.57.6.21 Comparison (absolute less-than)
+6.57.8.21 Comparison (absolute less-than)
 .........................................
 
    * uint32x2_t vcalt_f32 (float32x2_t, float32x2_t)
@@ -33738,7 +33791,7 @@ available when the '-mfpu=neon' switch is used:
    * uint32x4_t vcaltq_f32 (float32x4_t, float32x4_t)
      _Form of expected instruction(s):_ 'vacgt.f32 Q0, Q0, Q0'
 
-6.57.6.22 Test bits
+6.57.8.22 Test bits
 ...................
 
    * uint32x2_t vtst_u32 (uint32x2_t, uint32x2_t)
@@ -33783,7 +33836,7 @@ available when the '-mfpu=neon' switch is used:
    * uint8x16_t vtstq_p8 (poly8x16_t, poly8x16_t)
      _Form of expected instruction(s):_ 'vtst.8 Q0, Q0, Q0'
 
-6.57.6.23 Absolute difference
+6.57.8.23 Absolute difference
 .............................
 
    * uint32x2_t vabd_u32 (uint32x2_t, uint32x2_t)
@@ -33846,7 +33899,7 @@ available when the '-mfpu=neon' switch is used:
    * int16x8_t vabdl_s8 (int8x8_t, int8x8_t)
      _Form of expected instruction(s):_ 'vabdl.s8 Q0, D0, D0'
 
-6.57.6.24 Absolute difference and accumulate
+6.57.8.24 Absolute difference and accumulate
 ............................................
 
    * uint32x2_t vaba_u32 (uint32x2_t, uint32x2_t, uint32x2_t)
@@ -33903,7 +33956,7 @@ available when the '-mfpu=neon' switch is used:
    * int16x8_t vabal_s8 (int16x8_t, int8x8_t, int8x8_t)
      _Form of expected instruction(s):_ 'vabal.s8 Q0, D0, D0'
 
-6.57.6.25 Maximum
+6.57.8.25 Maximum
 .................
 
    * uint32x2_t vmax_u32 (uint32x2_t, uint32x2_t)
@@ -33948,7 +34001,7 @@ available when the '-mfpu=neon' switch is used:
    * float32x4_t vmaxq_f32 (float32x4_t, float32x4_t)
      _Form of expected instruction(s):_ 'vmax.f32 Q0, Q0, Q0'
 
-6.57.6.26 Minimum
+6.57.8.26 Minimum
 .................
 
    * uint32x2_t vmin_u32 (uint32x2_t, uint32x2_t)
@@ -33993,7 +34046,7 @@ available when the '-mfpu=neon' switch is used:
    * float32x4_t vminq_f32 (float32x4_t, float32x4_t)
      _Form of expected instruction(s):_ 'vmin.f32 Q0, Q0, Q0'
 
-6.57.6.27 Pairwise add
+6.57.8.27 Pairwise add
 ......................
 
    * uint32x2_t vpadd_u32 (uint32x2_t, uint32x2_t)
@@ -34053,7 +34106,7 @@ available when the '-mfpu=neon' switch is used:
    * int16x8_t vpaddlq_s8 (int8x16_t)
      _Form of expected instruction(s):_ 'vpaddl.s8 Q0, Q0'
 
-6.57.6.28 Pairwise add, single_opcode widen and accumulate
+6.57.8.28 Pairwise add, single_opcode widen and accumulate
 ..........................................................
 
    * uint64x1_t vpadal_u32 (uint64x1_t, uint32x2_t)
@@ -34092,7 +34145,7 @@ available when the '-mfpu=neon' switch is used:
    * int16x8_t vpadalq_s8 (int16x8_t, int8x16_t)
      _Form of expected instruction(s):_ 'vpadal.s8 Q0, Q0'
 
-6.57.6.29 Folding maximum
+6.57.8.29 Folding maximum
 .........................
 
    * uint32x2_t vpmax_u32 (uint32x2_t, uint32x2_t)
@@ -34116,7 +34169,7 @@ available when the '-mfpu=neon' switch is used:
    * float32x2_t vpmax_f32 (float32x2_t, float32x2_t)
      _Form of expected instruction(s):_ 'vpmax.f32 D0, D0, D0'
 
-6.57.6.30 Folding minimum
+6.57.8.30 Folding minimum
 .........................
 
    * uint32x2_t vpmin_u32 (uint32x2_t, uint32x2_t)
@@ -34140,7 +34193,7 @@ available when the '-mfpu=neon' switch is used:
    * float32x2_t vpmin_f32 (float32x2_t, float32x2_t)
      _Form of expected instruction(s):_ 'vpmin.f32 D0, D0, D0'
 
-6.57.6.31 Reciprocal step
+6.57.8.31 Reciprocal step
 .........................
 
    * float32x2_t vrecps_f32 (float32x2_t, float32x2_t)
@@ -34155,7 +34208,7 @@ available when the '-mfpu=neon' switch is used:
    * float32x4_t vrsqrtsq_f32 (float32x4_t, float32x4_t)
      _Form of expected instruction(s):_ 'vrsqrts.f32 Q0, Q0, Q0'
 
-6.57.6.32 Vector shift left
+6.57.8.32 Vector shift left
 ...........................
 
    * uint32x2_t vshl_u32 (uint32x2_t, int32x2_t)
@@ -34350,7 +34403,7 @@ available when the '-mfpu=neon' switch is used:
    * int64x2_t vqrshlq_s64 (int64x2_t, int64x2_t)
      _Form of expected instruction(s):_ 'vqrshl.s64 Q0, Q0, Q0'
 
-6.57.6.33 Vector shift left by constant
+6.57.8.33 Vector shift left by constant
 .......................................
 
    * uint32x2_t vshl_n_u32 (uint32x2_t, const int)
@@ -34491,7 +34544,7 @@ available when the '-mfpu=neon' switch is used:
    * int16x8_t vshll_n_s8 (int8x8_t, const int)
      _Form of expected instruction(s):_ 'vshll.s8 Q0, D0, #0'
 
-6.57.6.34 Vector shift right by constant
+6.57.8.34 Vector shift right by constant
 ........................................
 
    * uint32x2_t vshr_n_u32 (uint32x2_t, const int)
@@ -34680,7 +34733,7 @@ available when the '-mfpu=neon' switch is used:
    * uint8x8_t vqrshrun_n_s16 (int16x8_t, const int)
      _Form of expected instruction(s):_ 'vqrshrun.s16 D0, Q0, #0'
 
-6.57.6.35 Vector shift right by constant and accumulate
+6.57.8.35 Vector shift right by constant and accumulate
 .......................................................
 
    * uint32x2_t vsra_n_u32 (uint32x2_t, uint32x2_t, const int)
@@ -34779,7 +34832,7 @@ available when the '-mfpu=neon' switch is used:
    * int64x2_t vrsraq_n_s64 (int64x2_t, int64x2_t, const int)
      _Form of expected instruction(s):_ 'vrsra.s64 Q0, Q0, #0'
 
-6.57.6.36 Vector shift right and insert
+6.57.8.36 Vector shift right and insert
 .......................................
 
    * poly64x1_t vsri_n_p64 (poly64x1_t, poly64x1_t, const int)
@@ -34848,7 +34901,7 @@ available when the '-mfpu=neon' switch is used:
    * poly8x16_t vsriq_n_p8 (poly8x16_t, poly8x16_t, const int)
      _Form of expected instruction(s):_ 'vsri.8 Q0, Q0, #0'
 
-6.57.6.37 Vector shift left and insert
+6.57.8.37 Vector shift left and insert
 ......................................
 
    * poly64x1_t vsli_n_p64 (poly64x1_t, poly64x1_t, const int)
@@ -34917,7 +34970,7 @@ available when the '-mfpu=neon' switch is used:
    * poly8x16_t vsliq_n_p8 (poly8x16_t, poly8x16_t, const int)
      _Form of expected instruction(s):_ 'vsli.8 Q0, Q0, #0'
 
-6.57.6.38 Absolute value
+6.57.8.38 Absolute value
 ........................
 
    * float32x2_t vabs_f32 (float32x2_t)
@@ -34962,7 +35015,7 @@ available when the '-mfpu=neon' switch is used:
    * int8x16_t vqabsq_s8 (int8x16_t)
      _Form of expected instruction(s):_ 'vqabs.s8 Q0, Q0'
 
-6.57.6.39 Negation
+6.57.8.39 Negation
 ..................
 
    * float32x2_t vneg_f32 (float32x2_t)
@@ -35007,7 +35060,7 @@ available when the '-mfpu=neon' switch is used:
    * int8x16_t vqnegq_s8 (int8x16_t)
      _Form of expected instruction(s):_ 'vqneg.s8 Q0, Q0'
 
-6.57.6.40 Bitwise not
+6.57.8.40 Bitwise not
 .....................
 
    * uint32x2_t vmvn_u32 (uint32x2_t)
@@ -35052,7 +35105,7 @@ available when the '-mfpu=neon' switch is used:
    * poly8x16_t vmvnq_p8 (poly8x16_t)
      _Form of expected instruction(s):_ 'vmvn Q0, Q0'
 
-6.57.6.41 Count leading sign bits
+6.57.8.41 Count leading sign bits
 .................................
 
    * int32x2_t vcls_s32 (int32x2_t)
@@ -35073,7 +35126,7 @@ available when the '-mfpu=neon' switch is used:
    * int8x16_t vclsq_s8 (int8x16_t)
      _Form of expected instruction(s):_ 'vcls.s8 Q0, Q0'
 
-6.57.6.42 Count leading zeros
+6.57.8.42 Count leading zeros
 .............................
 
    * uint32x2_t vclz_u32 (uint32x2_t)
@@ -35112,7 +35165,7 @@ available when the '-mfpu=neon' switch is used:
    * int8x16_t vclzq_s8 (int8x16_t)
      _Form of expected instruction(s):_ 'vclz.i8 Q0, Q0'
 
-6.57.6.43 Count number of set bits
+6.57.8.43 Count number of set bits
 ..................................
 
    * uint8x8_t vcnt_u8 (uint8x8_t)
@@ -35133,7 +35186,7 @@ available when the '-mfpu=neon' switch is used:
    * poly8x16_t vcntq_p8 (poly8x16_t)
      _Form of expected instruction(s):_ 'vcnt.8 Q0, Q0'
 
-6.57.6.44 Reciprocal estimate
+6.57.8.44 Reciprocal estimate
 .............................
 
    * float32x2_t vrecpe_f32 (float32x2_t)
@@ -35148,7 +35201,7 @@ available when the '-mfpu=neon' switch is used:
    * uint32x4_t vrecpeq_u32 (uint32x4_t)
      _Form of expected instruction(s):_ 'vrecpe.u32 Q0, Q0'
 
-6.57.6.45 Reciprocal square-root estimate
+6.57.8.45 Reciprocal square-root estimate
 .........................................
 
    * float32x2_t vrsqrte_f32 (float32x2_t)
@@ -35163,7 +35216,7 @@ available when the '-mfpu=neon' switch is used:
    * uint32x4_t vrsqrteq_u32 (uint32x4_t)
      _Form of expected instruction(s):_ 'vrsqrte.u32 Q0, Q0'
 
-6.57.6.46 Get lanes from a vector
+6.57.8.46 Get lanes from a vector
 .................................
 
    * uint32_t vget_lane_u32 (uint32x2_t, const int)
@@ -35232,7 +35285,7 @@ available when the '-mfpu=neon' switch is used:
      _Form of expected instruction(s):_ 'vmov R0, R0, D0' _or_ 'fmrrd
      R0, R0, D0'
 
-6.57.6.47 Set lanes in a vector
+6.57.8.47 Set lanes in a vector
 ...............................
 
    * uint32x2_t vset_lane_u32 (uint32_t, uint32x2_t, const int)
@@ -35299,7 +35352,7 @@ available when the '-mfpu=neon' switch is used:
    * int64x2_t vsetq_lane_s64 (int64_t, int64x2_t, const int)
      _Form of expected instruction(s):_ 'vmov D0, R0, R0'
 
-6.57.6.48 Create vector from literal bit pattern
+6.57.8.48 Create vector from literal bit pattern
 ................................................
 
    * poly64x1_t vcreate_p64 (uint64_t)
@@ -35326,7 +35379,7 @@ available when the '-mfpu=neon' switch is used:
 
    * poly8x8_t vcreate_p8 (uint64_t)
 
-6.57.6.49 Set all lanes to the same value
+6.57.8.49 Set all lanes to the same value
 .........................................
 
    * uint32x2_t vdup_n_u32 (uint32_t)
@@ -35523,7 +35576,7 @@ available when the '-mfpu=neon' switch is used:
 
    * int64x2_t vdupq_lane_s64 (int64x1_t, const int)
 
-6.57.6.50 Combining vectors
+6.57.8.50 Combining vectors
 ...........................
 
    * poly64x2_t vcombine_p64 (poly64x1_t, poly64x1_t)
@@ -35550,7 +35603,7 @@ available when the '-mfpu=neon' switch is used:
 
    * poly8x16_t vcombine_p8 (poly8x8_t, poly8x8_t)
 
-6.57.6.51 Splitting vectors
+6.57.8.51 Splitting vectors
 ...........................
 
    * poly64x1_t vget_high_p64 (poly64x2_t)
@@ -35610,7 +35663,7 @@ available when the '-mfpu=neon' switch is used:
 
    * int64x1_t vget_low_s64 (int64x2_t)
 
-6.57.6.52 Conversions
+6.57.8.52 Conversions
 .....................
 
    * float32x2_t vcvt_f32_u32 (uint32x2_t)
@@ -35667,7 +35720,7 @@ available when the '-mfpu=neon' switch is used:
    * int32x4_t vcvtq_n_s32_f32 (float32x4_t, const int)
      _Form of expected instruction(s):_ 'vcvt.s32.f32 Q0, Q0, #0'
 
-6.57.6.53 Move, single_opcode narrowing
+6.57.8.53 Move, single_opcode narrowing
 .......................................
 
    * uint32x2_t vmovn_u64 (uint64x2_t)
@@ -35715,7 +35768,7 @@ available when the '-mfpu=neon' switch is used:
    * uint8x8_t vqmovun_s16 (int16x8_t)
      _Form of expected instruction(s):_ 'vqmovun.s16 D0, Q0'
 
-6.57.6.54 Move, single_opcode long
+6.57.8.54 Move, single_opcode long
 ..................................
 
    * uint64x2_t vmovl_u32 (uint32x2_t)
@@ -35736,7 +35789,7 @@ available when the '-mfpu=neon' switch is used:
    * int16x8_t vmovl_s8 (int8x8_t)
      _Form of expected instruction(s):_ 'vmovl.s8 Q0, D0'
 
-6.57.6.55 Table lookup
+6.57.8.55 Table lookup
 ......................
 
    * poly8x8_t vtbl1_p8 (poly8x8_t, uint8x8_t)
@@ -35778,7 +35831,7 @@ available when the '-mfpu=neon' switch is used:
      _Form of expected instruction(s):_ 'vtbl.8 D0, {D0, D1, D2, D3},
      D0'
 
-6.57.6.56 Extended table lookup
+6.57.8.56 Extended table lookup
 ...............................
 
    * poly8x8_t vtbx1_p8 (poly8x8_t, poly8x8_t, uint8x8_t)
@@ -35820,7 +35873,7 @@ available when the '-mfpu=neon' switch is used:
      _Form of expected instruction(s):_ 'vtbx.8 D0, {D0, D1, D2, D3},
      D0'
 
-6.57.6.57 Multiply, lane
+6.57.8.57 Multiply, lane
 ........................
 
    * float32x2_t vmul_lane_f32 (float32x2_t, float32x2_t, const int)
@@ -35853,7 +35906,7 @@ available when the '-mfpu=neon' switch is used:
    * int16x8_t vmulq_lane_s16 (int16x8_t, int16x4_t, const int)
      _Form of expected instruction(s):_ 'vmul.i16 Q0, Q0, D0[0]'
 
-6.57.6.58 Long multiply, lane
+6.57.8.58 Long multiply, lane
 .............................
 
    * uint64x2_t vmull_lane_u32 (uint32x2_t, uint32x2_t, const int)
@@ -35868,7 +35921,7 @@ available when the '-mfpu=neon' switch is used:
    * int32x4_t vmull_lane_s16 (int16x4_t, int16x4_t, const int)
      _Form of expected instruction(s):_ 'vmull.s16 Q0, D0, D0[0]'
 
-6.57.6.59 Saturating doubling long multiply, lane
+6.57.8.59 Saturating doubling long multiply, lane
 .................................................
 
    * int64x2_t vqdmull_lane_s32 (int32x2_t, int32x2_t, const int)
@@ -35877,7 +35930,7 @@ available when the '-mfpu=neon' switch is used:
    * int32x4_t vqdmull_lane_s16 (int16x4_t, int16x4_t, const int)
      _Form of expected instruction(s):_ 'vqdmull.s16 Q0, D0, D0[0]'
 
-6.57.6.60 Saturating doubling multiply high, lane
+6.57.8.60 Saturating doubling multiply high, lane
 .................................................
 
    * int32x4_t vqdmulhq_lane_s32 (int32x4_t, int32x2_t, const int)
@@ -35904,7 +35957,7 @@ available when the '-mfpu=neon' switch is used:
    * int16x4_t vqrdmulh_lane_s16 (int16x4_t, int16x4_t, const int)
      _Form of expected instruction(s):_ 'vqrdmulh.s16 D0, D0, D0[0]'
 
-6.57.6.61 Multiply-accumulate, lane
+6.57.8.61 Multiply-accumulate, lane
 ...................................
 
    * float32x2_t vmla_lane_f32 (float32x2_t, float32x2_t, float32x2_t,
@@ -35971,7 +36024,7 @@ available when the '-mfpu=neon' switch is used:
      int)
      _Form of expected instruction(s):_ 'vqdmlal.s16 Q0, D0, D0[0]'
 
-6.57.6.62 Multiply-subtract, lane
+6.57.8.62 Multiply-subtract, lane
 .................................
 
    * float32x2_t vmls_lane_f32 (float32x2_t, float32x2_t, float32x2_t,
@@ -36038,7 +36091,7 @@ available when the '-mfpu=neon' switch is used:
      int)
      _Form of expected instruction(s):_ 'vqdmlsl.s16 Q0, D0, D0[0]'
 
-6.57.6.63 Vector multiply by scalar
+6.57.8.63 Vector multiply by scalar
 ...................................
 
    * float32x2_t vmul_n_f32 (float32x2_t, float32_t)
@@ -36071,7 +36124,7 @@ available when the '-mfpu=neon' switch is used:
    * int16x8_t vmulq_n_s16 (int16x8_t, int16_t)
      _Form of expected instruction(s):_ 'vmul.i16 Q0, Q0, D0[0]'
 
-6.57.6.64 Vector long multiply by scalar
+6.57.8.64 Vector long multiply by scalar
 ........................................
 
    * uint64x2_t vmull_n_u32 (uint32x2_t, uint32_t)
@@ -36086,7 +36139,7 @@ available when the '-mfpu=neon' switch is used:
    * int32x4_t vmull_n_s16 (int16x4_t, int16_t)
      _Form of expected instruction(s):_ 'vmull.s16 Q0, D0, D0[0]'
 
-6.57.6.65 Vector saturating doubling long multiply by scalar
+6.57.8.65 Vector saturating doubling long multiply by scalar
 ............................................................
 
    * int64x2_t vqdmull_n_s32 (int32x2_t, int32_t)
@@ -36095,7 +36148,7 @@ available when the '-mfpu=neon' switch is used:
    * int32x4_t vqdmull_n_s16 (int16x4_t, int16_t)
      _Form of expected instruction(s):_ 'vqdmull.s16 Q0, D0, D0[0]'
 
-6.57.6.66 Vector saturating doubling multiply high by scalar
+6.57.8.66 Vector saturating doubling multiply high by scalar
 ............................................................
 
    * int32x4_t vqdmulhq_n_s32 (int32x4_t, int32_t)
@@ -36122,7 +36175,7 @@ available when the '-mfpu=neon' switch is used:
    * int16x4_t vqrdmulh_n_s16 (int16x4_t, int16_t)
      _Form of expected instruction(s):_ 'vqrdmulh.s16 D0, D0, D0[0]'
 
-6.57.6.67 Vector multiply-accumulate by scalar
+6.57.8.67 Vector multiply-accumulate by scalar
 ..............................................
 
    * float32x2_t vmla_n_f32 (float32x2_t, float32x2_t, float32_t)
@@ -36173,7 +36226,7 @@ available when the '-mfpu=neon' switch is used:
    * int32x4_t vqdmlal_n_s16 (int32x4_t, int16x4_t, int16_t)
      _Form of expected instruction(s):_ 'vqdmlal.s16 Q0, D0, D0[0]'
 
-6.57.6.68 Vector multiply-subtract by scalar
+6.57.8.68 Vector multiply-subtract by scalar
 ............................................
 
    * float32x2_t vmls_n_f32 (float32x2_t, float32x2_t, float32_t)
@@ -36224,7 +36277,7 @@ available when the '-mfpu=neon' switch is used:
    * int32x4_t vqdmlsl_n_s16 (int32x4_t, int16x4_t, int16_t)
      _Form of expected instruction(s):_ 'vqdmlsl.s16 Q0, D0, D0[0]'
 
-6.57.6.69 Vector extract
+6.57.8.69 Vector extract
 ........................
 
    * poly64x1_t vext_p64 (poly64x1_t, poly64x1_t, const int)
@@ -36299,7 +36352,7 @@ available when the '-mfpu=neon' switch is used:
    * poly8x16_t vextq_p8 (poly8x16_t, poly8x16_t, const int)
      _Form of expected instruction(s):_ 'vext.8 Q0, Q0, Q0, #0'
 
-6.57.6.70 Reverse elements
+6.57.8.70 Reverse elements
 ..........................
 
    * uint32x2_t vrev64_u32 (uint32x2_t)
@@ -36410,7 +36463,7 @@ available when the '-mfpu=neon' switch is used:
    * poly8x16_t vrev16q_p8 (poly8x16_t)
      _Form of expected instruction(s):_ 'vrev16.8 Q0, Q0'
 
-6.57.6.71 Bit selection
+6.57.8.71 Bit selection
 .......................
 
    * poly64x1_t vbsl_p64 (uint64x1_t, poly64x1_t, poly64x1_t)
@@ -36509,7 +36562,7 @@ available when the '-mfpu=neon' switch is used:
      _Form of expected instruction(s):_ 'vbsl Q0, Q0, Q0' _or_ 'vbit Q0,
      Q0, Q0' _or_ 'vbif Q0, Q0, Q0'
 
-6.57.6.72 Transpose elements
+6.57.8.72 Transpose elements
 ............................
 
    * uint16x4x2_t vtrn_u16 (uint16x4_t, uint16x4_t)
@@ -36566,7 +36619,7 @@ available when the '-mfpu=neon' switch is used:
    * poly8x16x2_t vtrnq_p8 (poly8x16_t, poly8x16_t)
      _Form of expected instruction(s):_ 'vtrn.8 Q0, Q1'
 
-6.57.6.73 Zip elements
+6.57.8.73 Zip elements
 ......................
 
    * uint16x4x2_t vzip_u16 (uint16x4_t, uint16x4_t)
@@ -36623,7 +36676,7 @@ available when the '-mfpu=neon' switch is used:
    * poly8x16x2_t vzipq_p8 (poly8x16_t, poly8x16_t)
      _Form of expected instruction(s):_ 'vzip.8 Q0, Q1'
 
-6.57.6.74 Unzip elements
+6.57.8.74 Unzip elements
 ........................
 
    * uint32x2x2_t vuzp_u32 (uint32x2_t, uint32x2_t)
@@ -36680,7 +36733,7 @@ available when the '-mfpu=neon' switch is used:
    * poly8x16x2_t vuzpq_p8 (poly8x16_t, poly8x16_t)
      _Form of expected instruction(s):_ 'vuzp.8 Q0, Q1'
 
-6.57.6.75 Element/structure loads, VLD1 variants
+6.57.8.75 Element/structure loads, VLD1 variants
 ................................................
 
    * poly64x1_t vld1_p64 (const poly64_t *)
@@ -36906,7 +36959,7 @@ available when the '-mfpu=neon' switch is used:
    * int64x2_t vld1q_dup_s64 (const int64_t *)
      _Form of expected instruction(s):_ 'vld1.64 {D0}, [R0]'
 
-6.57.6.76 Element/structure stores, VST1 variants
+6.57.8.76 Element/structure stores, VST1 variants
 .................................................
 
    * void vst1_p64 (poly64_t *, poly64x1_t)
@@ -37053,7 +37106,7 @@ available when the '-mfpu=neon' switch is used:
    * void vst1q_lane_u64 (uint64_t *, uint64x2_t, const int)
      _Form of expected instruction(s):_ 'vst1.64 {D0}, [R0]'
 
-6.57.6.77 Element/structure loads, VLD2 variants
+6.57.8.77 Element/structure loads, VLD2 variants
 ................................................
 
    * uint32x2x2_t vld2_u32 (const uint32_t *)
@@ -37212,7 +37265,7 @@ available when the '-mfpu=neon' switch is used:
    * int64x1x2_t vld2_dup_s64 (const int64_t *)
      _Form of expected instruction(s):_ 'vld1.64 {D0, D1}, [R0]'
 
-6.57.6.78 Element/structure stores, VST2 variants
+6.57.8.78 Element/structure stores, VST2 variants
 .................................................
 
    * void vst2_u32 (uint32_t *, uint32x2x2_t)
@@ -37323,7 +37376,7 @@ available when the '-mfpu=neon' switch is used:
    * void vst2q_lane_p16 (poly16_t *, poly16x8x2_t, const int)
      _Form of expected instruction(s):_ 'vst2.16 {D0[0], D1[0]}, [R0]'
 
-6.57.6.79 Element/structure loads, VLD3 variants
+6.57.8.79 Element/structure loads, VLD3 variants
 ................................................
 
    * uint32x2x3_t vld3_u32 (const uint32_t *)
@@ -37506,7 +37559,7 @@ available when the '-mfpu=neon' switch is used:
    * int64x1x3_t vld3_dup_s64 (const int64_t *)
      _Form of expected instruction(s):_ 'vld1.64 {D0, D1, D2}, [R0]'
 
-6.57.6.80 Element/structure stores, VST3 variants
+6.57.8.80 Element/structure stores, VST3 variants
 .................................................
 
    * void vst3_u32 (uint32_t *, uint32x2x3_t)
@@ -37632,7 +37685,7 @@ available when the '-mfpu=neon' switch is used:
      _Form of expected instruction(s):_ 'vst3.16 {D0[0], D1[0], D2[0]},
      [R0]'
 
-6.57.6.81 Element/structure loads, VLD4 variants
+6.57.8.81 Element/structure loads, VLD4 variants
 ................................................
 
    * uint32x2x4_t vld4_u32 (const uint32_t *)
@@ -37815,7 +37868,7 @@ available when the '-mfpu=neon' switch is used:
    * int64x1x4_t vld4_dup_s64 (const int64_t *)
      _Form of expected instruction(s):_ 'vld1.64 {D0, D1, D2, D3}, [R0]'
 
-6.57.6.82 Element/structure stores, VST4 variants
+6.57.8.82 Element/structure stores, VST4 variants
 .................................................
 
    * void vst4_u32 (uint32_t *, uint32x2x4_t)
@@ -37941,7 +37994,7 @@ available when the '-mfpu=neon' switch is used:
      _Form of expected instruction(s):_ 'vst4.16 {D0[0], D1[0], D2[0],
      D3[0]}, [R0]'
 
-6.57.6.83 Logical operations (AND)
+6.57.8.83 Logical operations (AND)
 ..................................
 
    * uint32x2_t vand_u32 (uint32x2_t, uint32x2_t)
@@ -37990,7 +38043,7 @@ available when the '-mfpu=neon' switch is used:
    * int64x2_t vandq_s64 (int64x2_t, int64x2_t)
      _Form of expected instruction(s):_ 'vand Q0, Q0, Q0'
 
-6.57.6.84 Logical operations (OR)
+6.57.8.84 Logical operations (OR)
 .................................
 
    * uint32x2_t vorr_u32 (uint32x2_t, uint32x2_t)
@@ -38039,7 +38092,7 @@ available when the '-mfpu=neon' switch is used:
    * int64x2_t vorrq_s64 (int64x2_t, int64x2_t)
      _Form of expected instruction(s):_ 'vorr Q0, Q0, Q0'
 
-6.57.6.85 Logical operations (exclusive OR)
+6.57.8.85 Logical operations (exclusive OR)
 ...........................................
 
    * uint32x2_t veor_u32 (uint32x2_t, uint32x2_t)
@@ -38088,7 +38141,7 @@ available when the '-mfpu=neon' switch is used:
    * int64x2_t veorq_s64 (int64x2_t, int64x2_t)
      _Form of expected instruction(s):_ 'veor Q0, Q0, Q0'
 
-6.57.6.86 Logical operations (AND-NOT)
+6.57.8.86 Logical operations (AND-NOT)
 ......................................
 
    * uint32x2_t vbic_u32 (uint32x2_t, uint32x2_t)
@@ -38137,7 +38190,7 @@ available when the '-mfpu=neon' switch is used:
    * int64x2_t vbicq_s64 (int64x2_t, int64x2_t)
      _Form of expected instruction(s):_ 'vbic Q0, Q0, Q0'
 
-6.57.6.87 Logical operations (OR-NOT)
+6.57.8.87 Logical operations (OR-NOT)
 .....................................
 
    * uint32x2_t vorn_u32 (uint32x2_t, uint32x2_t)
@@ -38186,7 +38239,7 @@ available when the '-mfpu=neon' switch is used:
    * int64x2_t vornq_s64 (int64x2_t, int64x2_t)
      _Form of expected instruction(s):_ 'vorn Q0, Q0, Q0'
 
-6.57.6.88 Reinterpret casts
+6.57.8.88 Reinterpret casts
 ...........................
 
    * poly8x8_t vreinterpret_p8_p16 (poly16x4_t)
@@ -38810,16 +38863,17 @@ available when the '-mfpu=neon' switch is used:
      _Form of expected instruction(s):_ 'vmull.p64 Q0, D1, D2'
 
 
-File: gcc.info,  Node: ARM ACLE Intrinsics,  Next: AVR Built-in Functions,  Prev: ARM NEON Intrinsics,  Up: Target Builtins
+File: gcc.info,  Node: ARM ACLE Intrinsics,  Next: ARM Floating Point Status and Control Intrinsics,  Prev: ARM NEON Intrinsics,  Up: Target Builtins
 
-6.57.7 ARM ACLE Intrinsics
+6.57.9 ARM ACLE Intrinsics
 --------------------------
 
-These built-in intrinsics for the ARMv8-A CRC32 extension are available
-when the '-march=armv8-a+crc' switch is used:
-
-6.57.7.1 CRC32 intrinsics
+6.57.9.1 CRC32 intrinsics
 .........................
+
+These intrinsics are available when the CRC32 architecture extension is
+specified, e.g.  when the '-march=armv8-a+crc' switch is used, or when
+the target processor specified with '-mcpu' supports it.
 
    * uint32_t __crc32b (uint32_t, uint8_t)
      _Form of expected instruction(s):_ 'crc32b R0, R0, R0'
@@ -38832,8 +38886,7 @@ when the '-march=armv8-a+crc' switch is used:
 
    * uint32_t __crc32d (uint32_t, uint64_t)
      _Form of expected instruction(s):_ Two 'crc32w R0, R0, R0'
-     instructions for AArch32.  One 'crc32w W0, W0, X0' instruction for
-     AArch64.
+     instructions.
 
    * uint32_t __crc32cb (uint32_t, uint8_t)
      _Form of expected instruction(s):_ 'crc32cb R0, R0, R0'
@@ -38846,14 +38899,25 @@ when the '-march=armv8-a+crc' switch is used:
 
    * uint32_t __crc32cd (uint32_t, uint64_t)
      _Form of expected instruction(s):_ Two 'crc32cw R0, R0, R0'
-     instructions for AArch32.  One 'crc32cw W0, W0, X0' instruction for
-     AArch64.
+     instructions.
 
 
-File: gcc.info,  Node: AVR Built-in Functions,  Next: Blackfin Built-in Functions,  Prev: ARM ACLE Intrinsics,  Up: Target Builtins
+File: gcc.info,  Node: ARM Floating Point Status and Control Intrinsics,  Next: AVR Built-in Functions,  Prev: ARM ACLE Intrinsics,  Up: Target Builtins
 
-6.57.8 AVR Built-in Functions
------------------------------
+6.57.10 ARM Floating Point Status and Control Intrinsics
+--------------------------------------------------------
+
+These built-in functions are available for the ARM family of processors
+with floating-point unit.
+
+     unsigned int __builtin_arm_get_fpscr ()
+     void __builtin_arm_set_fpscr (unsigned int)
+
+
+File: gcc.info,  Node: AVR Built-in Functions,  Next: Blackfin Built-in Functions,  Prev: ARM Floating Point Status and Control Intrinsics,  Up: Target Builtins
+
+6.57.11 AVR Built-in Functions
+------------------------------
 
 For each built-in function for AVR, there is an equally named, uppercase
 built-in macro defined.  That way users can easily query if or if not a
@@ -38927,8 +38991,8 @@ values to non-contiguous port layouts.  Some examples:
 
 File: gcc.info,  Node: Blackfin Built-in Functions,  Next: FR-V Built-in Functions,  Prev: AVR Built-in Functions,  Up: Target Builtins
 
-6.57.9 Blackfin Built-in Functions
-----------------------------------
+6.57.12 Blackfin Built-in Functions
+-----------------------------------
 
 Currently, there are two Blackfin-specific built-in functions.  These
 are used for generating 'CSYNC' and 'SSYNC' machine insns without using
@@ -38942,7 +39006,7 @@ instructions.  These functions are named as follows:
 
 File: gcc.info,  Node: FR-V Built-in Functions,  Next: X86 Built-in Functions,  Prev: Blackfin Built-in Functions,  Up: Target Builtins
 
-6.57.10 FR-V Built-in Functions
+6.57.13 FR-V Built-in Functions
 -------------------------------
 
 GCC provides many FR-V-specific built-in functions.  In general, these
@@ -38966,7 +39030,7 @@ tabular form.
 
 File: gcc.info,  Node: Argument Types,  Next: Directly-mapped Integer Functions,  Up: FR-V Built-in Functions
 
-6.57.10.1 Argument Types
+6.57.13.1 Argument Types
 ........................
 
 The arguments to the built-in functions can be divided into three
@@ -39005,7 +39069,7 @@ details.
 
 File: gcc.info,  Node: Directly-mapped Integer Functions,  Next: Directly-mapped Media Functions,  Prev: Argument Types,  Up: FR-V Built-in Functions
 
-6.57.10.2 Directly-mapped Integer Functions
+6.57.13.2 Directly-mapped Integer Functions
 ...........................................
 
 The functions listed below map directly to FR-V I-type instructions.
@@ -39025,7 +39089,7 @@ Function prototype               Example usage           Assembly output
 
 File: gcc.info,  Node: Directly-mapped Media Functions,  Next: Raw read/write Functions,  Prev: Directly-mapped Integer Functions,  Up: FR-V Built-in Functions
 
-6.57.10.3 Directly-mapped Media Functions
+6.57.13.3 Directly-mapped Media Functions
 .........................................
 
 The functions listed below map directly to FR-V M-type instructions.
@@ -39172,7 +39236,7 @@ sw2)'                            B)'                     A,B,C'
 
 File: gcc.info,  Node: Raw read/write Functions,  Next: Other Built-in Functions,  Prev: Directly-mapped Media Functions,  Up: FR-V Built-in Functions
 
-6.57.10.4 Raw read/write Functions
+6.57.13.4 Raw read/write Functions
 ..................................
 
 This sections describes built-in functions related to read and write
@@ -39193,7 +39257,7 @@ described in Fujitsu's manual described above.
 
 File: gcc.info,  Node: Other Built-in Functions,  Prev: Raw read/write Functions,  Up: FR-V Built-in Functions
 
-6.57.10.5 Other Built-in Functions
+6.57.13.5 Other Built-in Functions
 ..................................
 
 This section describes built-in functions that are not named after a
@@ -39226,7 +39290,7 @@ specific FR-V instruction.
 
 File: gcc.info,  Node: X86 Built-in Functions,  Next: X86 transactional memory intrinsics,  Prev: FR-V Built-in Functions,  Up: Target Builtins
 
-6.57.11 X86 Built-in Functions
+6.57.14 X86 Built-in Functions
 ------------------------------
 
 These built-in functions are available for the i386 and x86-64 family of
@@ -40533,7 +40597,7 @@ transactional memory intrinsics:: should be used instead.
 
 File: gcc.info,  Node: X86 transactional memory intrinsics,  Next: MIPS DSP Built-in Functions,  Prev: X86 Built-in Functions,  Up: Target Builtins
 
-6.57.12 X86 transaction memory intrinsics
+6.57.15 X86 transaction memory intrinsics
 -----------------------------------------
 
 Hardware transactional memory intrinsics for i386.  These allow to use
@@ -40599,7 +40663,7 @@ and suitable fallback code always needs to be supplied.
 
 File: gcc.info,  Node: MIPS DSP Built-in Functions,  Next: MIPS Paired-Single Support,  Prev: X86 transactional memory intrinsics,  Up: Target Builtins
 
-6.57.13 MIPS DSP Built-in Functions
+6.57.16 MIPS DSP Built-in Functions
 -----------------------------------
 
 The MIPS DSP Application-Specific Extension (ASE) includes new
@@ -40872,7 +40936,7 @@ details on what each instruction does.
 
 File: gcc.info,  Node: MIPS Paired-Single Support,  Next: MIPS Loongson Built-in Functions,  Prev: MIPS DSP Built-in Functions,  Up: Target Builtins
 
-6.57.14 MIPS Paired-Single Support
+6.57.17 MIPS Paired-Single Support
 ----------------------------------
 
 The MIPS64 architecture includes a number of instructions that operate
@@ -40908,7 +40972,7 @@ targets.  For example, the code above sets the lower half of 'a' to
 
 File: gcc.info,  Node: MIPS Loongson Built-in Functions,  Next: Other MIPS Built-in Functions,  Prev: MIPS Paired-Single Support,  Up: Target Builtins
 
-6.57.15 MIPS Loongson Built-in Functions
+6.57.18 MIPS Loongson Built-in Functions
 ----------------------------------------
 
 GCC provides intrinsics to access the SIMD instructions provided by the
@@ -41039,7 +41103,7 @@ each instruction.
 
 File: gcc.info,  Node: Paired-Single Arithmetic,  Next: Paired-Single Built-in Functions,  Up: MIPS Loongson Built-in Functions
 
-6.57.15.1 Paired-Single Arithmetic
+6.57.18.1 Paired-Single Arithmetic
 ..................................
 
 The table below lists the 'v2sf' operations for which hardware support
@@ -41063,7 +41127,7 @@ the command-line option '-mno-fused-madd'.
 
 File: gcc.info,  Node: Paired-Single Built-in Functions,  Next: MIPS-3D Built-in Functions,  Prev: Paired-Single Arithmetic,  Up: MIPS Loongson Built-in Functions
 
-6.57.15.2 Paired-Single Built-in Functions
+6.57.18.2 Paired-Single Built-in Functions
 ..........................................
 
 The following paired-single functions map directly to a particular MIPS
@@ -41142,7 +41206,7 @@ case, COND can be any of the 16 floating-point conditions: 'f', 'un',
 
 File: gcc.info,  Node: MIPS-3D Built-in Functions,  Prev: Paired-Single Built-in Functions,  Up: MIPS Loongson Built-in Functions
 
-6.57.15.3 MIPS-3D Built-in Functions
+6.57.18.3 MIPS-3D Built-in Functions
 ....................................
 
 The MIPS-3D Application-Specific Extension (ASE) includes additional
@@ -41290,7 +41354,7 @@ case, COND can be any of the 16 floating-point conditions: 'f', 'un',
 
 File: gcc.info,  Node: Other MIPS Built-in Functions,  Next: MSP430 Built-in Functions,  Prev: MIPS Loongson Built-in Functions,  Up: Target Builtins
 
-6.57.16 Other MIPS Built-in Functions
+6.57.19 Other MIPS Built-in Functions
 -------------------------------------
 
 GCC provides other MIPS-specific built-in functions:
@@ -41314,7 +41378,7 @@ GCC provides other MIPS-specific built-in functions:
 
 File: gcc.info,  Node: MSP430 Built-in Functions,  Next: NDS32 Built-in Functions,  Prev: Other MIPS Built-in Functions,  Up: Target Builtins
 
-6.57.17 MSP430 Built-in Functions
+6.57.20 MSP430 Built-in Functions
 ---------------------------------
 
 GCC provides a couple of special builtin functions to aid in the writing
@@ -41335,7 +41399,7 @@ of interrupt handlers in C.
 
 File: gcc.info,  Node: NDS32 Built-in Functions,  Next: picoChip Built-in Functions,  Prev: MSP430 Built-in Functions,  Up: Target Builtins
 
-6.57.18 NDS32 Built-in Functions
+6.57.21 NDS32 Built-in Functions
 --------------------------------
 
 These built-in functions are available for the NDS32 target:
@@ -41368,7 +41432,7 @@ These built-in functions are available for the NDS32 target:
 
 File: gcc.info,  Node: picoChip Built-in Functions,  Next: PowerPC Built-in Functions,  Prev: NDS32 Built-in Functions,  Up: Target Builtins
 
-6.57.19 picoChip Built-in Functions
+6.57.22 picoChip Built-in Functions
 -----------------------------------
 
 GCC provides an interface to selected machine instructions from the
@@ -41404,7 +41468,7 @@ picoChip instruction set.
 
 File: gcc.info,  Node: PowerPC Built-in Functions,  Next: PowerPC AltiVec/VSX Built-in Functions,  Prev: picoChip Built-in Functions,  Up: Target Builtins
 
-6.57.20 PowerPC Built-in Functions
+6.57.23 PowerPC Built-in Functions
 ----------------------------------
 
 These built-in functions are available for the PowerPC family of
@@ -41416,8 +41480,6 @@ processors:
      uint64_t __builtin_ppc_get_timebase ();
      unsigned long __builtin_ppc_mftb ();
      double __builtin_unpack_longdouble (long double, int);
-     double __builtin_longdouble_dw0 (long double);
-     double __builtin_longdouble_dw1 (long double);
      long double __builtin_pack_longdouble (double, double);
 
  The 'vec_rsqrt', '__builtin_rsqrt', and '__builtin_rsqrtf' functions
@@ -41483,7 +41545,7 @@ of processors when the Vector Scalar (vsx) instruction set is available:
 
 File: gcc.info,  Node: PowerPC AltiVec/VSX Built-in Functions,  Next: PowerPC Hardware Transactional Memory Built-in Functions,  Prev: PowerPC Built-in Functions,  Up: Target Builtins
 
-6.57.21 PowerPC AltiVec Built-in Functions
+6.57.24 PowerPC AltiVec Built-in Functions
 ------------------------------------------
 
 GCC provides an interface for the PowerPC family of processors to access
@@ -43943,7 +44005,7 @@ constant integer in the range of 0 to 15.
 
 File: gcc.info,  Node: PowerPC Hardware Transactional Memory Built-in Functions,  Next: RX Built-in Functions,  Prev: PowerPC AltiVec/VSX Built-in Functions,  Up: Target Builtins
 
-6.57.22 PowerPC Hardware Transactional Memory Built-in Functions
+6.57.25 PowerPC Hardware Transactional Memory Built-in Functions
 ----------------------------------------------------------------
 
 GCC provides two interfaces for accessing the Hardware Transactional
@@ -43953,7 +44015,7 @@ interface, consisting of built-in functions specific to PowerPC and a
 higher level interface consisting of inline functions that are common
 between PowerPC and S/390.
 
-6.57.22.1 PowerPC HTM Low Level Built-in Functions
+6.57.25.1 PowerPC HTM Low Level Built-in Functions
 ..................................................
 
 The following low level built-in functions are available with '-mhtm' or
@@ -44057,7 +44119,7 @@ using the following code example:
          /* Code to use in transaction suspended state.  */
        }
 
-6.57.22.2 PowerPC HTM High Level Inline Functions
+6.57.25.2 PowerPC HTM High Level Inline Functions
 .................................................
 
 The following high level HTM interface is made available by including
@@ -44123,7 +44185,7 @@ work on either PowerPC or S/390:
 
 File: gcc.info,  Node: RX Built-in Functions,  Next: S/390 System z Built-in Functions,  Prev: PowerPC Hardware Transactional Memory Built-in Functions,  Up: Target Builtins
 
-6.57.23 RX Built-in Functions
+6.57.26 RX Built-in Functions
 -----------------------------
 
 GCC supports some of the RX instructions which cannot be expressed in
@@ -44221,7 +44283,7 @@ following functions are supported:
 
 File: gcc.info,  Node: S/390 System z Built-in Functions,  Next: SH Built-in Functions,  Prev: RX Built-in Functions,  Up: Target Builtins
 
-6.57.24 S/390 System z Built-in Functions
+6.57.27 S/390 System z Built-in Functions
 -----------------------------------------
 
  -- Built-in Function: int __builtin_tbegin (void*)
@@ -44326,7 +44388,7 @@ File: gcc.info,  Node: S/390 System z Built-in Functions,  Next: SH Built-in Fun
 
 File: gcc.info,  Node: SH Built-in Functions,  Next: SPARC VIS Built-in Functions,  Prev: S/390 System z Built-in Functions,  Up: Target Builtins
 
-6.57.25 SH Built-in Functions
+6.57.28 SH Built-in Functions
 -----------------------------
 
 The following built-in functions are supported on the SH1, SH2, SH3 and
@@ -44361,7 +44423,7 @@ SH4 families of processors:
 
 File: gcc.info,  Node: SPARC VIS Built-in Functions,  Next: SPU Built-in Functions,  Prev: SH Built-in Functions,  Up: Target Builtins
 
-6.57.26 SPARC VIS Built-in Functions
+6.57.29 SPARC VIS Built-in Functions
 ------------------------------------
 
 GCC supports SIMD operations on the SPARC using both the generic vector
@@ -44501,7 +44563,7 @@ functions also become available:
 
 File: gcc.info,  Node: SPU Built-in Functions,  Next: TI C6X Built-in Functions,  Prev: SPARC VIS Built-in Functions,  Up: Target Builtins
 
-6.57.27 SPU Built-in Functions
+6.57.30 SPU Built-in Functions
 ------------------------------
 
 GCC provides extensions for the SPU processor as described in the
@@ -44546,7 +44608,7 @@ are subject to change without notice.
 
 File: gcc.info,  Node: TI C6X Built-in Functions,  Next: TILE-Gx Built-in Functions,  Prev: SPU Built-in Functions,  Up: Target Builtins
 
-6.57.28 TI C6X Built-in Functions
+6.57.31 TI C6X Built-in Functions
 ---------------------------------
 
 GCC provides intrinsics to access certain instructions of the TI C6X
@@ -44586,7 +44648,7 @@ C6X instructions.
 
 File: gcc.info,  Node: TILE-Gx Built-in Functions,  Next: TILEPro Built-in Functions,  Prev: TI C6X Built-in Functions,  Up: Target Builtins
 
-6.57.29 TILE-Gx Built-in Functions
+6.57.32 TILE-Gx Built-in Functions
 ----------------------------------
 
 GCC provides intrinsics to access every instruction of the TILE-Gx
@@ -44619,7 +44681,7 @@ that no network operations before it are reordered with those after it.
 
 File: gcc.info,  Node: TILEPro Built-in Functions,  Prev: TILE-Gx Built-in Functions,  Up: Target Builtins
 
-6.57.30 TILEPro Built-in Functions
+6.57.33 TILEPro Built-in Functions
 ----------------------------------
 
 GCC provides intrinsics to access every instruction of the TILEPro
@@ -56909,138 +56971,141 @@ Node: Object Size Checking1287125
 Node: Cilk Plus Builtins1292618
 Node: Other Builtins1293487
 Node: Target Builtins1322794
-Node: Alpha Built-in Functions1324213
-Node: Altera Nios II Built-in Functions1327226
-Node: ARC Built-in Functions1331213
-Node: ARC SIMD Built-in Functions1336425
-Node: ARM iWMMXt Built-in Functions1345321
-Node: ARM NEON Intrinsics1352304
-Node: ARM ACLE Intrinsics1569798
-Node: AVR Built-in Functions1571179
-Node: Blackfin Built-in Functions1574257
-Node: FR-V Built-in Functions1574874
-Node: Argument Types1575737
-Node: Directly-mapped Integer Functions1577491
-Node: Directly-mapped Media Functions1578575
-Node: Raw read/write Functions1586781
-Node: Other Built-in Functions1587689
-Node: X86 Built-in Functions1588875
-Node: X86 transactional memory intrinsics1648068
-Node: MIPS DSP Built-in Functions1650744
-Node: MIPS Paired-Single Support1663253
-Node: MIPS Loongson Built-in Functions1664752
-Node: Paired-Single Arithmetic1671267
-Node: Paired-Single Built-in Functions1672215
-Node: MIPS-3D Built-in Functions1674882
-Node: Other MIPS Built-in Functions1680260
-Node: MSP430 Built-in Functions1681265
-Node: NDS32 Built-in Functions1682169
-Node: picoChip Built-in Functions1683462
-Node: PowerPC Built-in Functions1684805
-Node: PowerPC AltiVec/VSX Built-in Functions1688618
-Node: PowerPC Hardware Transactional Memory Built-in Functions1821516
-Node: RX Built-in Functions1828057
-Node: S/390 System z Built-in Functions1832090
-Node: SH Built-in Functions1837319
-Node: SPARC VIS Built-in Functions1838712
-Node: SPU Built-in Functions1844315
-Node: TI C6X Built-in Functions1846132
-Node: TILE-Gx Built-in Functions1847157
-Node: TILEPro Built-in Functions1848276
-Node: Target Format Checks1849345
-Node: Solaris Format Checks1849777
-Node: Darwin Format Checks1850203
-Node: Pragmas1851021
-Node: ARM Pragmas1851757
-Node: M32C Pragmas1852360
-Node: MeP Pragmas1853432
-Node: RS/6000 and PowerPC Pragmas1855500
-Node: Darwin Pragmas1856241
-Node: Solaris Pragmas1857308
-Node: Symbol-Renaming Pragmas1858472
-Node: Structure-Packing Pragmas1860028
-Node: Weak Pragmas1861673
-Node: Diagnostic Pragmas1862407
-Node: Visibility Pragmas1865516
-Node: Push/Pop Macro Pragmas1866268
-Node: Function Specific Option Pragmas1867241
-Node: Loop-Specific Pragmas1869432
-Node: Unnamed Fields1870531
-Node: Thread-Local1872758
-Node: C99 Thread-Local Edits1874863
-Node: C++98 Thread-Local Edits1876861
-Node: Binary constants1880306
-Node: C++ Extensions1880977
-Node: C++ Volatiles1882688
-Node: Restricted Pointers1885036
-Node: Vague Linkage1886627
-Node: C++ Interface1890250
-Ref: C++ Interface-Footnote-11894538
-Node: Template Instantiation1894676
-Node: Bound member functions1901262
-Node: C++ Attributes1902794
-Node: Function Multiversioning1906373
-Node: Namespace Association1908190
-Node: Type Traits1909570
-Node: Java Exceptions1916053
-Node: Deprecated Features1917443
-Node: Backwards Compatibility1920410
-Node: Objective-C1921757
-Node: GNU Objective-C runtime API1922364
-Node: Modern GNU Objective-C runtime API1923371
-Node: Traditional GNU Objective-C runtime API1925807
-Node: Executing code before main1926534
-Node: What you can and what you cannot do in +load1929274
-Node: Type encoding1931662
-Node: Legacy type encoding1936689
-Node: @encode1937779
-Node: Method signatures1938320
-Node: Garbage Collection1940312
-Node: Constant string objects1943002
-Node: compatibility_alias1945511
-Node: Exceptions1946232
-Node: Synchronization1948942
-Node: Fast enumeration1950126
-Node: Using fast enumeration1950438
-Node: c99-like fast enumeration syntax1951649
-Node: Fast enumeration details1952352
-Node: Fast enumeration protocol1954692
-Node: Messaging with the GNU Objective-C runtime1957844
-Node: Dynamically registering methods1959216
-Node: Forwarding hook1960907
-Node: Compatibility1963947
-Node: Gcov1970503
-Node: Gcov Intro1971036
-Node: Invoking Gcov1973754
-Node: Gcov and Optimization1987994
-Node: Gcov Data Files1990996
-Node: Cross-profiling1992391
-Node: Trouble1994245
-Node: Actual Bugs1995657
-Node: Interoperation1996104
-Node: Incompatibilities2002995
-Node: Fixed Headers2011147
-Node: Standard Libraries2012805
-Node: Disappointments2014177
-Node: C++ Misunderstandings2018536
-Node: Static Definitions2019347
-Node: Name lookup2020400
-Ref: Name lookup-Footnote-12025180
-Node: Temporaries2025369
-Node: Copy Assignment2027345
-Node: Non-bugs2029152
-Node: Warnings and Errors2039658
-Node: Bugs2041420
-Node: Bug Criteria2041887
-Node: Bug Reporting2044097
-Node: Service2044327
-Node: Contributing2045146
-Node: Funding2045886
-Node: GNU Project2048376
-Node: Copying2049022
-Node: GNU Free Documentation License2086531
-Node: Contributors2111649
-Node: Option Index2149518
-Node: Keyword Index2359877
+Node: AArch64 Built-in Functions1324320
+Node: AArch64 intrinsics1324769
+Node: Alpha Built-in Functions1326075
+Node: Altera Nios II Built-in Functions1329115
+Node: ARC Built-in Functions1333102
+Node: ARC SIMD Built-in Functions1338314
+Node: ARM iWMMXt Built-in Functions1347210
+Node: ARM NEON Intrinsics1354193
+Node: ARM ACLE Intrinsics1571687
+Node: ARM Floating Point Status and Control Intrinsics1573041
+Node: AVR Built-in Functions1573506
+Node: Blackfin Built-in Functions1576615
+Node: FR-V Built-in Functions1577234
+Node: Argument Types1578097
+Node: Directly-mapped Integer Functions1579851
+Node: Directly-mapped Media Functions1580935
+Node: Raw read/write Functions1589141
+Node: Other Built-in Functions1590049
+Node: X86 Built-in Functions1591235
+Node: X86 transactional memory intrinsics1650428
+Node: MIPS DSP Built-in Functions1653104
+Node: MIPS Paired-Single Support1665613
+Node: MIPS Loongson Built-in Functions1667112
+Node: Paired-Single Arithmetic1673627
+Node: Paired-Single Built-in Functions1674575
+Node: MIPS-3D Built-in Functions1677242
+Node: Other MIPS Built-in Functions1682620
+Node: MSP430 Built-in Functions1683625
+Node: NDS32 Built-in Functions1684529
+Node: picoChip Built-in Functions1685822
+Node: PowerPC Built-in Functions1687165
+Node: PowerPC AltiVec/VSX Built-in Functions1690874
+Node: PowerPC Hardware Transactional Memory Built-in Functions1823772
+Node: RX Built-in Functions1830313
+Node: S/390 System z Built-in Functions1834346
+Node: SH Built-in Functions1839575
+Node: SPARC VIS Built-in Functions1840968
+Node: SPU Built-in Functions1846571
+Node: TI C6X Built-in Functions1848388
+Node: TILE-Gx Built-in Functions1849413
+Node: TILEPro Built-in Functions1850532
+Node: Target Format Checks1851601
+Node: Solaris Format Checks1852033
+Node: Darwin Format Checks1852459
+Node: Pragmas1853277
+Node: ARM Pragmas1854013
+Node: M32C Pragmas1854616
+Node: MeP Pragmas1855688
+Node: RS/6000 and PowerPC Pragmas1857756
+Node: Darwin Pragmas1858497
+Node: Solaris Pragmas1859564
+Node: Symbol-Renaming Pragmas1860728
+Node: Structure-Packing Pragmas1862284
+Node: Weak Pragmas1863929
+Node: Diagnostic Pragmas1864663
+Node: Visibility Pragmas1867772
+Node: Push/Pop Macro Pragmas1868524
+Node: Function Specific Option Pragmas1869497
+Node: Loop-Specific Pragmas1871688
+Node: Unnamed Fields1872787
+Node: Thread-Local1875014
+Node: C99 Thread-Local Edits1877119
+Node: C++98 Thread-Local Edits1879117
+Node: Binary constants1882562
+Node: C++ Extensions1883233
+Node: C++ Volatiles1884944
+Node: Restricted Pointers1887292
+Node: Vague Linkage1888883
+Node: C++ Interface1892506
+Ref: C++ Interface-Footnote-11896794
+Node: Template Instantiation1896932
+Node: Bound member functions1903518
+Node: C++ Attributes1905050
+Node: Function Multiversioning1908629
+Node: Namespace Association1910446
+Node: Type Traits1911826
+Node: Java Exceptions1918309
+Node: Deprecated Features1919699
+Node: Backwards Compatibility1922666
+Node: Objective-C1924013
+Node: GNU Objective-C runtime API1924620
+Node: Modern GNU Objective-C runtime API1925627
+Node: Traditional GNU Objective-C runtime API1928063
+Node: Executing code before main1928790
+Node: What you can and what you cannot do in +load1931530
+Node: Type encoding1933918
+Node: Legacy type encoding1938945
+Node: @encode1940035
+Node: Method signatures1940576
+Node: Garbage Collection1942568
+Node: Constant string objects1945258
+Node: compatibility_alias1947767
+Node: Exceptions1948488
+Node: Synchronization1951198
+Node: Fast enumeration1952382
+Node: Using fast enumeration1952694
+Node: c99-like fast enumeration syntax1953905
+Node: Fast enumeration details1954608
+Node: Fast enumeration protocol1956948
+Node: Messaging with the GNU Objective-C runtime1960100
+Node: Dynamically registering methods1961472
+Node: Forwarding hook1963163
+Node: Compatibility1966203
+Node: Gcov1972759
+Node: Gcov Intro1973292
+Node: Invoking Gcov1976010
+Node: Gcov and Optimization1990250
+Node: Gcov Data Files1993252
+Node: Cross-profiling1994647
+Node: Trouble1996501
+Node: Actual Bugs1997913
+Node: Interoperation1998360
+Node: Incompatibilities2005251
+Node: Fixed Headers2013403
+Node: Standard Libraries2015061
+Node: Disappointments2016433
+Node: C++ Misunderstandings2020792
+Node: Static Definitions2021603
+Node: Name lookup2022656
+Ref: Name lookup-Footnote-12027436
+Node: Temporaries2027625
+Node: Copy Assignment2029601
+Node: Non-bugs2031408
+Node: Warnings and Errors2041914
+Node: Bugs2043676
+Node: Bug Criteria2044143
+Node: Bug Reporting2046353
+Node: Service2046583
+Node: Contributing2047402
+Node: Funding2048142
+Node: GNU Project2050632
+Node: Copying2051278
+Node: GNU Free Documentation License2088787
+Node: Contributors2113905
+Node: Option Index2151774
+Node: Keyword Index2362133
 
 End Tag Table

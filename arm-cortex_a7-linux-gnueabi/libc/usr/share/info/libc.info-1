@@ -3,7 +3,7 @@ This is libc.info, produced by makeinfo version 5.2 from libc.texinfo.
 This file documents the GNU C Library.
 
    This is 'The GNU C Library Reference Manual', for version
-2.19-2014.06 (crosstool-NG linaro-1.13.1 - Linaro GCC 2014.06 -
+2.19-2014.07 (crosstool-NG linaro-1.13.1 - Linaro GCC 2014.07 -
 Cortex-A7).
 
    Copyright (C) 1993-2014 Free Software Foundation, Inc.
@@ -1716,8 +1716,8 @@ File: libc.info,  Node: Top,  Next: Introduction,  Prev: (dir),  Up: (dir)
 Main Menu
 *********
 
-This is 'The GNU C Library Reference Manual', for Version 2.19-2014.06
-(crosstool-NG linaro-1.13.1 - Linaro GCC 2014.06 - Cortex-A7) of the GNU
+This is 'The GNU C Library Reference Manual', for Version 2.19-2014.07
+(crosstool-NG linaro-1.13.1 - Linaro GCC 2014.07 - Cortex-A7) of the GNU
 C Library.
 
 * Menu:
