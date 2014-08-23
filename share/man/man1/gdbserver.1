@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GDBSERVER 1"
-.TH GDBSERVER 1 "2014-07-20" "gdb-7.7.1-2014.06-1" "GNU Development Tools"
+.TH GDBSERVER 1 "2014-08-23" "gdb-7.8-2014.08" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -331,6 +331,10 @@ the developers.
 Instruct \f(CW\*(C`gdbserver\*(C'\fR to display remote protocol debug output.
 This option is intended for \f(CW\*(C`gdbserver\*(C'\fR development and for bug reports to
 the developers.
+.IP "\fB\-\-debug\-format=option1\fR[\fB,option2,...\fR]" 4
+.IX Item "--debug-format=option1[,option2,...]"
+Instruct \f(CW\*(C`gdbserver\*(C'\fR to include extra information in each line
+of debugging output.
 .IP "\fB\-\-wrapper\fR" 4
 .IX Item "--wrapper"
 Specify a wrapper to launch programs
