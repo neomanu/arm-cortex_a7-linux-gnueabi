@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PKGVERSION="(crosstool-NG linaro-1.13.1 - Linaro GCC 2014.08 - Cortex-A7) "
+PKGVERSION="(crosstool-NG linaro-1.13.1 - Linaro GCC 2014.10 - Cortex-A7) "
 TZVERSION="2.19-2014.08"
 REPORT_BUGS_TO="<https://bugs.launchpad.net/gcc-linaro>"
 

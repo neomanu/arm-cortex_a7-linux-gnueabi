@@ -22,7 +22,7 @@ END-INFO-DIR-ENTRY
 
    This is the Tenth Edition, of 'Debugging with GDB: the GNU
 Source-Level Debugger' for GDB (crosstool-NG linaro-1.13.1 - Linaro GCC
-2014.08 - Cortex-A7) Version 7.8-2014.08.
+2014.10 - Cortex-A7) Version 7.8-2014.09.
 
    Copyright (C) 1988-2014 Free Software Foundation, Inc.
 
@@ -46,7 +46,7 @@ Debugging with GDB
 This file describes GDB, the GNU symbolic debugger.
 
    This is the Tenth Edition, for GDB (crosstool-NG linaro-1.13.1 -
-Linaro GCC 2014.08 - Cortex-A7) Version 7.8-2014.08.
+Linaro GCC 2014.10 - Cortex-A7) Version 7.8-2014.09.
 
    Copyright (C) 1988-2014 Free Software Foundation, Inc.
 
@@ -493,7 +493,7 @@ Let us use GDB to try to see what is going on.
      There is absolutely no warranty for GDB; type "show warranty"
       for details.
 
-     GDB 7.8-2014.08, Copyright 1999 Free Software Foundation, Inc...
+     GDB 7.8-2014.09, Copyright 1999 Free Software Foundation, Inc...
      (gdb)
 
 GDB reads only enough symbol data to know where to find the rest when
@@ -36768,18 +36768,18 @@ and TeX (or 'texi2roff') to typeset the printed version.
 
    GDB includes an already formatted copy of the on-line Info version of
 this manual in the 'gdb' subdirectory.  The main Info file is
-'gdb-linaro-7.8-2014.08/gdb/gdb.info', and it refers to subordinate
-files matching 'gdb.info*' in the same directory.  If necessary, you can
-print out these files, or read them with any editor; but they are easier
-to read using the 'info' subsystem in GNU Emacs or the standalone 'info'
+'gdb-7.8-2014.09/gdb/gdb.info', and it refers to subordinate files
+matching 'gdb.info*' in the same directory.  If necessary, you can print
+out these files, or read them with any editor; but they are easier to
+read using the 'info' subsystem in GNU Emacs or the standalone 'info'
 program, available as part of the GNU Texinfo distribution.
 
    If you want to format these Info files yourself, you need one of the
 Info formatting programs, such as 'texinfo-format-buffer' or 'makeinfo'.
 
    If you have 'makeinfo' installed, and are in the top level GDB source
-directory ('gdb-linaro-7.8-2014.08', in the case of version
-7.8-2014.08), you can make the Info file by typing:
+directory ('gdb-7.8-2014.09', in the case of version 7.8-2014.09), you
+can make the Info file by typing:
 
      cd gdb
      make gdb.info
@@ -36804,8 +36804,7 @@ On its own, TeX cannot either read or typeset a Texinfo file.
 
    If you have TeX and a DVI printer program installed, you can typeset
 and print this manual.  First switch to the 'gdb' subdirectory of the
-main source directory (for example, to 'gdb-linaro-7.8-2014.08/gdb') and
-type:
+main source directory (for example, to 'gdb-7.8-2014.09/gdb') and type:
 
      make gdb.dvi
 
@@ -36813,8 +36812,8 @@ type:
 
    ---------- Footnotes ----------
 
-   (1) In 'gdb-linaro-7.8-2014.08/gdb/refcard.ps' of the version
-7.8-2014.08 release.
+   (1) In 'gdb-7.8-2014.09/gdb/refcard.ps' of the version 7.8-2014.09
+release.
 
 
 File: gdb.info,  Node: Installing GDB,  Next: Maintenance Commands,  Prev: Formatting Documentation,  Up: Top
@@ -36917,39 +36916,39 @@ preparing GDB for installation; you can then use 'make' to build the
 a single directory, whose name is usually composed by appending the
 version number to 'gdb'.
 
-   For example, the GDB version 7.8-2014.08 distribution is in the
-'gdb-linaro-7.8-2014.08' directory.  That directory contains:
+   For example, the GDB version 7.8-2014.09 distribution is in the
+'gdb-7.8-2014.09' directory.  That directory contains:
 
-'gdb-linaro-7.8-2014.08/configure (and supporting files)'
+'gdb-7.8-2014.09/configure (and supporting files)'
      script for configuring GDB and all its supporting libraries
 
-'gdb-linaro-7.8-2014.08/gdb'
+'gdb-7.8-2014.09/gdb'
      the source specific to GDB itself
 
-'gdb-linaro-7.8-2014.08/bfd'
+'gdb-7.8-2014.09/bfd'
      source for the Binary File Descriptor library
 
-'gdb-linaro-7.8-2014.08/include'
+'gdb-7.8-2014.09/include'
      GNU include files
 
-'gdb-linaro-7.8-2014.08/libiberty'
+'gdb-7.8-2014.09/libiberty'
      source for the '-liberty' free software library
 
-'gdb-linaro-7.8-2014.08/opcodes'
+'gdb-7.8-2014.09/opcodes'
      source for the library of opcode tables and disassemblers
 
-'gdb-linaro-7.8-2014.08/readline'
+'gdb-7.8-2014.09/readline'
      source for the GNU command-line interface
 
-'gdb-linaro-7.8-2014.08/glob'
+'gdb-7.8-2014.09/glob'
      source for the GNU filename pattern-matching subroutine
 
-'gdb-linaro-7.8-2014.08/mmalloc'
+'gdb-7.8-2014.09/mmalloc'
      source for the GNU memory-mapped malloc package
 
    The simplest way to configure and build GDB is to run 'configure'
 from the 'gdb-VERSION-NUMBER' source directory, which in this example is
-the 'gdb-linaro-7.8-2014.08' directory.
+the 'gdb-7.8-2014.09' directory.
 
    First switch to the 'gdb-VERSION-NUMBER' source directory if you are
 not already in it; then run 'configure'.  Pass the identifier for the
@@ -36957,7 +36956,7 @@ platform on which GDB will run as an argument.
 
    For example:
 
-     cd gdb-linaro-7.8-2014.08
+     cd gdb-7.8-2014.09
      ./configure HOST
      make
 
@@ -36979,9 +36978,9 @@ need to run 'sh' on it explicitly:
 
    If you run 'configure' from a directory that contains source
 directories for multiple libraries or programs, such as the
-'gdb-linaro-7.8-2014.08' source directory for version 7.8-2014.08,
-'configure' creates configuration files for every directory level
-underneath (unless you tell it not to, with the '--norecursion' option).
+'gdb-7.8-2014.09' source directory for version 7.8-2014.09, 'configure'
+creates configuration files for every directory level underneath (unless
+you tell it not to, with the '--norecursion' option).
 
    You should run the 'configure' script from the top directory in the
 source tree, the 'gdb-VERSION-NUMBER' directory.  If you run 'configure'
@@ -37019,13 +37018,13 @@ to specify a path to find 'configure' itself from your working
 directory.  If the path to 'configure' would be the same as the argument
 to '--srcdir', you can leave out the '--srcdir' option; it is assumed.)
 
-   For example, with version 7.8-2014.08, you can build GDB in a
+   For example, with version 7.8-2014.09, you can build GDB in a
 separate directory for a Sun 4 like this:
 
-     cd gdb-linaro-7.8-2014.08
+     cd gdb-7.8-2014.09
      mkdir ../gdb-sun4
      cd ../gdb-sun4
-     ../gdb-linaro-7.8-2014.08/configure sun4
+     ../gdb-7.8-2014.09/configure sun4
      make
 
    When 'configure' builds a configuration using a remote source
@@ -37036,7 +37035,7 @@ the example, you'd find the Sun 4 library 'libiberty.a' in the directory
 
    Make sure that your path to the 'configure' script has just one
 instance of 'gdb' in it.  If your path to 'configure' looks like
-'../gdb-linaro-7.8-2014.08/gdb/configure', you are configuring only one
+'../gdb-7.8-2014.09/gdb/configure', you are configuring only one
 subdirectory of GDB, not the whole package.  This leads to build errors
 about missing include files such as 'bfd/bfd.h'.
 
@@ -37052,9 +37051,9 @@ a configured directory--whatever directory you were in when you called
 
    The 'Makefile' that 'configure' generates in each source directory
 also runs recursively.  If you type 'make' in a source directory such as
-'gdb-linaro-7.8-2014.08' (or in a separate configured directory
-configured with '--srcdir=DIRNAME/gdb-linaro-7.8-2014.08'), you will
-build all the required libraries, and then build GDB.
+'gdb-7.8-2014.09' (or in a separate configured directory configured with
+'--srcdir=DIRNAME/gdb-7.8-2014.09'), you will build all the required
+libraries, and then build GDB.
 
    When you have multiple hosts or targets configured in separate
 directories, you can run 'make' on them in parallel (for example, if
@@ -37098,7 +37097,7 @@ you can use it to test your guesses on abbreviations--for example:
      Invalid configuration `i986v': machine `i986v' not recognized
 
 'config.sub' is also distributed in the GDB source directory
-('gdb-linaro-7.8-2014.08', for version 7.8-2014.08).
+('gdb-7.8-2014.09', for version 7.8-2014.09).
 
 
 File: gdb.info,  Node: Configure Options,  Next: System-wide configuration,  Prev: Config Names,  Up: Installing GDB
@@ -50323,154 +50322,154 @@ Node: Word Designators1441639
 Node: Modifiers1443274
 Node: In Memoriam1444495
 Node: Formatting Documentation1445378
-Ref: Formatting Documentation-Footnote-11448743
-Node: Installing GDB1448830
-Node: Requirements1449402
-Ref: Expat1449971
-Node: Running Configure1452538
-Node: Separate Objdir1456288
-Node: Config Names1459254
-Node: Configure Options1460722
-Node: System-wide configuration1463093
-Node: System-wide Configuration Scripts1465053
-Node: Maintenance Commands1466237
-Ref: maint info breakpoints1467892
-Node: Remote Protocol1484155
-Node: Overview1484809
-Ref: Binary Data1487354
-Node: Packets1489879
-Ref: thread-id syntax1490779
-Ref: extended mode1492224
-Ref: ? packet1492482
-Ref: bc1493948
-Ref: bs1494158
-Ref: read registers packet1495775
-Ref: cycle step packet1497711
-Ref: write register packet1500312
-Ref: step with signal packet1501291
-Ref: vCont packet1502767
-Ref: vKill packet1507655
-Ref: X packet1508585
-Ref: insert breakpoint or watchpoint packet1508896
-Node: Stop Reply Packets1512936
-Node: General Query Packets1517702
-Ref: qCRC packet1520532
-Ref: QNonStop1528355
-Ref: QPassSignals1529017
-Ref: QProgramSignals1530224
-Ref: qSearch memory1532739
-Ref: QStartNoAckMode1533247
-Ref: qSupported1533778
-Ref: multiprocess extensions1546476
-Ref: install tracepoint in tracing1548506
-Ref: qXfer read1551890
-Ref: qXfer auxiliary vector read1552385
-Ref: qXfer btrace read1552733
-Ref: qXfer target description read1553800
-Ref: qXfer library list read1554234
-Ref: qXfer svr4 library list read1554890
-Ref: qXfer memory map read1556743
-Ref: qXfer sdata read1557130
-Ref: qXfer siginfo read1557596
-Ref: qXfer spu read1557993
-Ref: qXfer threads read1558517
-Ref: qXfer traceframe info read1558920
-Ref: qXfer unwind info block1559338
-Ref: qXfer fdpic loadmap read1559572
-Ref: qXfer osdata read1559988
-Ref: qXfer write1561250
-Ref: qXfer siginfo write1561817
-Ref: qXfer spu write1562214
-Ref: General Query Packets-Footnote-11564756
-Node: Architecture-Specific Protocol Details1565083
-Node: ARM-Specific Protocol Details1565592
-Node: ARM Breakpoint Kinds1565840
-Node: MIPS-Specific Protocol Details1566171
-Node: MIPS Register packet Format1566454
-Node: MIPS Breakpoint Kinds1567381
-Node: Tracepoint Packets1567799
-Ref: QTEnable1576790
-Ref: QTDisable1576986
-Ref: qTfSTM1582523
-Ref: qTsSTM1582523
-Ref: qTSTMat1583600
-Ref: QTBuffer-size1584751
-Node: Host I/O Packets1586724
-Node: Interrupts1591335
-Node: Notification Packets1593238
-Node: Remote Non-Stop1598658
-Node: Packet Acknowledgment1600948
-Node: Examples1603063
-Node: File-I/O Remote Protocol Extension1603657
-Node: File-I/O Overview1604119
-Node: Protocol Basics1606318
-Node: The F Request Packet1608547
-Node: The F Reply Packet1609448
-Node: The Ctrl-C Message1610366
-Node: Console I/O1611992
-Node: List of Supported Calls1613208
-Node: open1613570
-Node: close1616078
-Node: read1616461
-Node: write1617070
-Node: lseek1617841
-Node: rename1618725
-Node: unlink1620132
-Node: stat/fstat1621079
-Node: gettimeofday1621972
-Node: isatty1622408
-Node: system1623004
-Node: Protocol-specific Representation of Datatypes1624546
-Node: Integral Datatypes1624923
-Node: Pointer Values1625730
-Node: Memory Transfer1626434
-Node: struct stat1627054
-Node: struct timeval1629256
-Node: Constants1629773
-Node: Open Flags1630222
-Node: mode_t Values1630563
-Node: Errno Values1631055
-Node: Lseek Flags1631865
-Node: Limits1632050
-Node: File-I/O Examples1632410
-Node: Library List Format1633498
-Node: Library List Format for SVR4 Targets1636280
-Node: Memory Map Format1638747
-Node: Thread List Format1641322
-Node: Traceframe Info Format1642140
-Node: Branch Trace Format1643826
-Node: Agent Expressions1645171
-Node: General Bytecode Design1647992
-Node: Bytecode Descriptions1652786
-Node: Using Agent Expressions1666217
-Node: Varying Target Capabilities1668194
-Node: Rationale1669355
-Node: Target Descriptions1676744
-Node: Retrieving Descriptions1678618
-Node: Target Description Format1679703
-Node: Predefined Target Types1688746
-Node: Standard Target Features1690130
-Node: AArch64 Features1691994
-Node: ARM Features1692417
-Node: i386 Features1693935
-Node: MIPS Features1695871
-Node: M68K Features1697056
-Node: Nios II Features1697719
-Node: PowerPC Features1698117
-Node: S/390 and System z Features1699440
-Node: TIC6x Features1700905
-Node: Operating System Information1701465
-Node: Process list1702300
-Node: Trace File Format1703363
-Node: Index Section Format1705356
-Node: Man Pages1713326
-Node: gdb man1713732
-Node: gdbserver man1719768
-Node: gcore man1726965
-Node: gdbinit man1727622
-Node: Copying1728505
-Node: GNU Free Documentation License1766066
-Node: Concept Index1791213
-Node: Command and Variable Index1919715
+Ref: Formatting Documentation-Footnote-11448722
+Node: Installing GDB1448802
+Node: Requirements1449374
+Ref: Expat1449943
+Node: Running Configure1452510
+Node: Separate Objdir1456169
+Node: Config Names1459100
+Node: Configure Options1460561
+Node: System-wide configuration1462932
+Node: System-wide Configuration Scripts1464892
+Node: Maintenance Commands1466076
+Ref: maint info breakpoints1467731
+Node: Remote Protocol1483994
+Node: Overview1484648
+Ref: Binary Data1487193
+Node: Packets1489718
+Ref: thread-id syntax1490618
+Ref: extended mode1492063
+Ref: ? packet1492321
+Ref: bc1493787
+Ref: bs1493997
+Ref: read registers packet1495614
+Ref: cycle step packet1497550
+Ref: write register packet1500151
+Ref: step with signal packet1501130
+Ref: vCont packet1502606
+Ref: vKill packet1507494
+Ref: X packet1508424
+Ref: insert breakpoint or watchpoint packet1508735
+Node: Stop Reply Packets1512775
+Node: General Query Packets1517541
+Ref: qCRC packet1520371
+Ref: QNonStop1528194
+Ref: QPassSignals1528856
+Ref: QProgramSignals1530063
+Ref: qSearch memory1532578
+Ref: QStartNoAckMode1533086
+Ref: qSupported1533617
+Ref: multiprocess extensions1546315
+Ref: install tracepoint in tracing1548345
+Ref: qXfer read1551729
+Ref: qXfer auxiliary vector read1552224
+Ref: qXfer btrace read1552572
+Ref: qXfer target description read1553639
+Ref: qXfer library list read1554073
+Ref: qXfer svr4 library list read1554729
+Ref: qXfer memory map read1556582
+Ref: qXfer sdata read1556969
+Ref: qXfer siginfo read1557435
+Ref: qXfer spu read1557832
+Ref: qXfer threads read1558356
+Ref: qXfer traceframe info read1558759
+Ref: qXfer unwind info block1559177
+Ref: qXfer fdpic loadmap read1559411
+Ref: qXfer osdata read1559827
+Ref: qXfer write1561089
+Ref: qXfer siginfo write1561656
+Ref: qXfer spu write1562053
+Ref: General Query Packets-Footnote-11564595
+Node: Architecture-Specific Protocol Details1564922
+Node: ARM-Specific Protocol Details1565431
+Node: ARM Breakpoint Kinds1565679
+Node: MIPS-Specific Protocol Details1566010
+Node: MIPS Register packet Format1566293
+Node: MIPS Breakpoint Kinds1567220
+Node: Tracepoint Packets1567638
+Ref: QTEnable1576629
+Ref: QTDisable1576825
+Ref: qTfSTM1582362
+Ref: qTsSTM1582362
+Ref: qTSTMat1583439
+Ref: QTBuffer-size1584590
+Node: Host I/O Packets1586563
+Node: Interrupts1591174
+Node: Notification Packets1593077
+Node: Remote Non-Stop1598497
+Node: Packet Acknowledgment1600787
+Node: Examples1602902
+Node: File-I/O Remote Protocol Extension1603496
+Node: File-I/O Overview1603958
+Node: Protocol Basics1606157
+Node: The F Request Packet1608386
+Node: The F Reply Packet1609287
+Node: The Ctrl-C Message1610205
+Node: Console I/O1611831
+Node: List of Supported Calls1613047
+Node: open1613409
+Node: close1615917
+Node: read1616300
+Node: write1616909
+Node: lseek1617680
+Node: rename1618564
+Node: unlink1619971
+Node: stat/fstat1620918
+Node: gettimeofday1621811
+Node: isatty1622247
+Node: system1622843
+Node: Protocol-specific Representation of Datatypes1624385
+Node: Integral Datatypes1624762
+Node: Pointer Values1625569
+Node: Memory Transfer1626273
+Node: struct stat1626893
+Node: struct timeval1629095
+Node: Constants1629612
+Node: Open Flags1630061
+Node: mode_t Values1630402
+Node: Errno Values1630894
+Node: Lseek Flags1631704
+Node: Limits1631889
+Node: File-I/O Examples1632249
+Node: Library List Format1633337
+Node: Library List Format for SVR4 Targets1636119
+Node: Memory Map Format1638586
+Node: Thread List Format1641161
+Node: Traceframe Info Format1641979
+Node: Branch Trace Format1643665
+Node: Agent Expressions1645010
+Node: General Bytecode Design1647831
+Node: Bytecode Descriptions1652625
+Node: Using Agent Expressions1666056
+Node: Varying Target Capabilities1668033
+Node: Rationale1669194
+Node: Target Descriptions1676583
+Node: Retrieving Descriptions1678457
+Node: Target Description Format1679542
+Node: Predefined Target Types1688585
+Node: Standard Target Features1689969
+Node: AArch64 Features1691833
+Node: ARM Features1692256
+Node: i386 Features1693774
+Node: MIPS Features1695710
+Node: M68K Features1696895
+Node: Nios II Features1697558
+Node: PowerPC Features1697956
+Node: S/390 and System z Features1699279
+Node: TIC6x Features1700744
+Node: Operating System Information1701304
+Node: Process list1702139
+Node: Trace File Format1703202
+Node: Index Section Format1705195
+Node: Man Pages1713165
+Node: gdb man1713571
+Node: gdbserver man1719607
+Node: gcore man1726804
+Node: gdbinit man1727461
+Node: Copying1728344
+Node: GNU Free Documentation License1765905
+Node: Concept Index1791052
+Node: Command and Variable Index1919554
 
 End Tag Table

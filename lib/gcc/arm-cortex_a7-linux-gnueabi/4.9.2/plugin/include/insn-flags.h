@@ -302,12 +302,24 @@
 #define HAVE_nearbyintdf2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 && TARGET_VFP_DOUBLE) && (TARGET_VFP_DOUBLE))
 #define HAVE_rintdf2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 && TARGET_VFP_DOUBLE) && (TARGET_VFP_DOUBLE))
 #define HAVE_rounddf2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 && TARGET_VFP_DOUBLE) && (TARGET_VFP_DOUBLE))
+#define HAVE_lceilsfsi2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 ) && (TARGET_VFP))
+#define HAVE_lfloorsfsi2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 ) && (TARGET_VFP))
+#define HAVE_lroundsfsi2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 ) && (TARGET_VFP))
+#define HAVE_lceilusfsi2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 ) && (TARGET_VFP))
+#define HAVE_lfloorusfsi2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 ) && (TARGET_VFP))
+#define HAVE_lroundusfsi2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 ) && (TARGET_VFP))
+#define HAVE_lceildfsi2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 && TARGET_VFP_DOUBLE) && (TARGET_VFP_DOUBLE))
+#define HAVE_lfloordfsi2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 && TARGET_VFP_DOUBLE) && (TARGET_VFP_DOUBLE))
+#define HAVE_lrounddfsi2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 && TARGET_VFP_DOUBLE) && (TARGET_VFP_DOUBLE))
+#define HAVE_lceiludfsi2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 && TARGET_VFP_DOUBLE) && (TARGET_VFP_DOUBLE))
+#define HAVE_lfloorudfsi2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 && TARGET_VFP_DOUBLE) && (TARGET_VFP_DOUBLE))
+#define HAVE_lroundudfsi2 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 && TARGET_VFP_DOUBLE) && (TARGET_VFP_DOUBLE))
 #define HAVE_smaxsf3 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 ) && (TARGET_VFP))
 #define HAVE_smaxdf3 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 && TARGET_VFP_DOUBLE) && (TARGET_VFP_DOUBLE))
 #define HAVE_sminsf3 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 ) && (TARGET_VFP))
 #define HAVE_smindf3 ((TARGET_HARD_FLOAT && TARGET_FPU_ARMV8 && TARGET_VFP_DOUBLE) && (TARGET_VFP_DOUBLE))
-#define HAVE_set_fpscr (TARGET_VFP)
-#define HAVE_get_fpscr (TARGET_VFP)
+#define HAVE_set_fpscr (TARGET_VFP && TARGET_HARD_FLOAT)
+#define HAVE_get_fpscr (TARGET_VFP && TARGET_HARD_FLOAT)
 #define HAVE_tls_load_dot_plus_four (TARGET_THUMB2)
 #define HAVE_thumb2_zero_extendqisi2_v6 (TARGET_THUMB2 && arm_arch6)
 #define HAVE_thumb2_casesi_internal (TARGET_THUMB2 && !flag_pic)
@@ -368,6 +380,18 @@
 #define HAVE_neon_vrintxv4sf (TARGET_NEON && TARGET_FPU_ARMV8)
 #define HAVE_neon_vrintav4sf (TARGET_NEON && TARGET_FPU_ARMV8)
 #define HAVE_neon_vrintnv4sf (TARGET_NEON && TARGET_FPU_ARMV8)
+#define HAVE_neon_vcvtpv2sfv2si (TARGET_NEON && TARGET_FPU_ARMV8)
+#define HAVE_neon_vcvtmv2sfv2si (TARGET_NEON && TARGET_FPU_ARMV8)
+#define HAVE_neon_vcvtav2sfv2si (TARGET_NEON && TARGET_FPU_ARMV8)
+#define HAVE_neon_vcvtpuv2sfv2si (TARGET_NEON && TARGET_FPU_ARMV8)
+#define HAVE_neon_vcvtmuv2sfv2si (TARGET_NEON && TARGET_FPU_ARMV8)
+#define HAVE_neon_vcvtauv2sfv2si (TARGET_NEON && TARGET_FPU_ARMV8)
+#define HAVE_neon_vcvtpv4sfv4si (TARGET_NEON && TARGET_FPU_ARMV8)
+#define HAVE_neon_vcvtmv4sfv4si (TARGET_NEON && TARGET_FPU_ARMV8)
+#define HAVE_neon_vcvtav4sfv4si (TARGET_NEON && TARGET_FPU_ARMV8)
+#define HAVE_neon_vcvtpuv4sfv4si (TARGET_NEON && TARGET_FPU_ARMV8)
+#define HAVE_neon_vcvtmuv4sfv4si (TARGET_NEON && TARGET_FPU_ARMV8)
+#define HAVE_neon_vcvtauv4sfv4si (TARGET_NEON && TARGET_FPU_ARMV8)
 #define HAVE_iorv8qi3 (TARGET_NEON)
 #define HAVE_iorv16qi3 (TARGET_NEON)
 #define HAVE_iorv4hi3 (TARGET_NEON)
@@ -1981,6 +2005,8 @@
 #define HAVE_neon_vnegv4si (TARGET_NEON)
 #define HAVE_neon_vnegv2sf (TARGET_NEON)
 #define HAVE_neon_vnegv4sf (TARGET_NEON)
+#define HAVE_neon_copysignfv2sf (TARGET_NEON)
+#define HAVE_neon_copysignfv4sf (TARGET_NEON)
 #define HAVE_neon_vclzv8qi (TARGET_NEON)
 #define HAVE_neon_vclzv16qi (TARGET_NEON)
 #define HAVE_neon_vclzv4hi (TARGET_NEON)
@@ -2652,6 +2678,18 @@ extern rtx        gen_floordf2                          (rtx, rtx);
 extern rtx        gen_nearbyintdf2                      (rtx, rtx);
 extern rtx        gen_rintdf2                           (rtx, rtx);
 extern rtx        gen_rounddf2                          (rtx, rtx);
+extern rtx        gen_lceilsfsi2                        (rtx, rtx);
+extern rtx        gen_lfloorsfsi2                       (rtx, rtx);
+extern rtx        gen_lroundsfsi2                       (rtx, rtx);
+extern rtx        gen_lceilusfsi2                       (rtx, rtx);
+extern rtx        gen_lfloorusfsi2                      (rtx, rtx);
+extern rtx        gen_lroundusfsi2                      (rtx, rtx);
+extern rtx        gen_lceildfsi2                        (rtx, rtx);
+extern rtx        gen_lfloordfsi2                       (rtx, rtx);
+extern rtx        gen_lrounddfsi2                       (rtx, rtx);
+extern rtx        gen_lceiludfsi2                       (rtx, rtx);
+extern rtx        gen_lfloorudfsi2                      (rtx, rtx);
+extern rtx        gen_lroundudfsi2                      (rtx, rtx);
 extern rtx        gen_smaxsf3                           (rtx, rtx, rtx);
 extern rtx        gen_smaxdf3                           (rtx, rtx, rtx);
 extern rtx        gen_sminsf3                           (rtx, rtx, rtx);
@@ -2718,6 +2756,18 @@ extern rtx        gen_neon_vrintmv4sf                   (rtx, rtx);
 extern rtx        gen_neon_vrintxv4sf                   (rtx, rtx);
 extern rtx        gen_neon_vrintav4sf                   (rtx, rtx);
 extern rtx        gen_neon_vrintnv4sf                   (rtx, rtx);
+extern rtx        gen_neon_vcvtpv2sfv2si                (rtx, rtx);
+extern rtx        gen_neon_vcvtmv2sfv2si                (rtx, rtx);
+extern rtx        gen_neon_vcvtav2sfv2si                (rtx, rtx);
+extern rtx        gen_neon_vcvtpuv2sfv2si               (rtx, rtx);
+extern rtx        gen_neon_vcvtmuv2sfv2si               (rtx, rtx);
+extern rtx        gen_neon_vcvtauv2sfv2si               (rtx, rtx);
+extern rtx        gen_neon_vcvtpv4sfv4si                (rtx, rtx);
+extern rtx        gen_neon_vcvtmv4sfv4si                (rtx, rtx);
+extern rtx        gen_neon_vcvtav4sfv4si                (rtx, rtx);
+extern rtx        gen_neon_vcvtpuv4sfv4si               (rtx, rtx);
+extern rtx        gen_neon_vcvtmuv4sfv4si               (rtx, rtx);
+extern rtx        gen_neon_vcvtauv4sfv4si               (rtx, rtx);
 extern rtx        gen_iorv8qi3                          (rtx, rtx, rtx);
 extern rtx        gen_iorv16qi3                         (rtx, rtx, rtx);
 extern rtx        gen_iorv4hi3                          (rtx, rtx, rtx);
@@ -4178,6 +4228,8 @@ extern rtx        gen_neon_vnegv2si                     (rtx, rtx, rtx);
 extern rtx        gen_neon_vnegv4si                     (rtx, rtx, rtx);
 extern rtx        gen_neon_vnegv2sf                     (rtx, rtx, rtx);
 extern rtx        gen_neon_vnegv4sf                     (rtx, rtx, rtx);
+extern rtx        gen_neon_copysignfv2sf                (rtx, rtx, rtx);
+extern rtx        gen_neon_copysignfv4sf                (rtx, rtx, rtx);
 extern rtx        gen_neon_vclzv8qi                     (rtx, rtx, rtx);
 extern rtx        gen_neon_vclzv16qi                    (rtx, rtx, rtx);
 extern rtx        gen_neon_vclzv4hi                     (rtx, rtx, rtx);
